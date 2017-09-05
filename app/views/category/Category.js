@@ -43,7 +43,7 @@ export default class Category extends React.Component{
             <FontAwesome name="search" size={20} color="#fff" style={{margin:8}}/>
             //<Text style={{color:'#fff',margin:8}}>搜索</Text>
         ),
-        headerStyle: { backgroundColor:'#3C3C3C'},//顶部栏背景颜色
+        headerStyle: { backgroundColor:'#3C3C3C'},//顶部栏背景颜色1
     }
 
     componentDidMount(){
