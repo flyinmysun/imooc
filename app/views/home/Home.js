@@ -32,7 +32,10 @@ export default class Home extends React.Component{
 
         this.state = {
             dataSource: dataSource.cloneWithPages(IMGS),
-            iconNavDatas:[{id:1},{id:1},{id:1},{id:1}]
+            iconNavDatas:[{id:1,color:'#FFBA5B',label:'实战'},
+                {id:2,color:'#3DDB9A',label:'猿问'},
+                {id:3,color:'#45C3FF',label:'手记'},
+                {id:4,color:'#FF778E',label:'发现'}]
         }
     }
 
@@ -85,7 +88,10 @@ export default class Home extends React.Component{
                     {this.state.iconNavDatas.map((item,index)=>{
                         return(
                             <View key={index} style={styles.iconNavItemWrap}>
-                                <Text>sss</Text>
+                                <View style={[styles.iconNavItemIcon,{backgroundColor:item.color}]}>
+                                    <FontAwesome name="envelope" size={16} color="#fff"/>
+                                </View>
+                                <Text style={{marginTop:10,fontSize:10}}>{item.label}</Text>
                             </View>
                         )
                     })}
@@ -126,7 +132,15 @@ var styles = StyleSheet.create({
         backgroundColor:"#fff",
     },
     iconNavItemWrap:{
+        alignItems:'center',
         width:width/4,
-        height:80,
+        padding:10
+    },
+    iconNavItemIcon:{
+        borderRadius:width/4*0.4/2,
+        width:width/4*0.4,
+        height:width/4*0.4,
+        justifyContent:'center',
+        alignItems:'center'
     }
 });

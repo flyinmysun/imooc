@@ -50,6 +50,7 @@ export default class Category extends React.Component{
     }
 
     render(){
+
         return(
             <View style={[styles.flex,styles.container]}>
                 <ScrollView>
@@ -58,14 +59,14 @@ export default class Category extends React.Component{
                             return(
                                 <View key={index} style={styles.course}>
                                     <View style={styles.flex}>
-                                        <Text style={styles.course_text}>{item}</Text>
+                                        <Text style={styles.course_text}>{"分类"}</Text>
                                     </View>
                                     <View style={styles.flex_wrap}>
                                     {
                                         item.map((t,i)=>{
                                             return(
                                                 <View style={styles.flex_item} key={i}>
-                                                    <Image source={t.url}/>
+                                                    {/*<Image source={t.url}/>*/}
                                                     <Text style={styles.flex_item_text}>{t.name}</Text>
                                                 </View>
                                             )
@@ -78,52 +79,47 @@ export default class Category extends React.Component{
                         })
                     }
 
+                    {/* <View style={styles.flex_wrap}>
+                     <View style={styles.flex_item}>
+                     <Image source={require("../../imgs/category/html.png")}/>
+                     <Text style={styles.flex_item_text}>HTML/CSS</Text>
+                     </View>
+                     <View style={styles.flex_item}>
+                     <Image source={require("../../imgs/category/JS.png")}/>
+                     <Text style={styles.flex_item_text}>JavaScript</Text>
+                     </View>
+                     <View style={styles.flex_item}>
+                     <Image source={require("../../imgs/category/jquery.png")}/>
+                     <Text style={styles.flex_item_text}>jQuery</Text>
+                     </View>
+                     <View style={styles.flex_item}>
+                     <Image source={require("../../imgs/category/html.png")}/>
+                     <Text style={styles.flex_item_text}>HTML/CSS</Text>
+                     </View>
+                     <View style={styles.flex_item}>
+                     <Image source={require("../../imgs/category/JS.png")}/>
+                     <Text style={styles.flex_item_text}>JavaScript</Text>
+                     </View>
+                     <View style={styles.flex_item}>
+                     <Image source={require("../../imgs/category/jquery.png")}/>
+                     <Text style={styles.flex_item_text}>jQuery</Text>
+                     </View>
+                     <View style={styles.flex_item}>
+                     <Image source={require("../../imgs/category/html.png")}/>
+                     <Text style={styles.flex_item_text}>HTML/CSS</Text>
+                     </View>
+                     <View style={styles.flex_item}>
+                     <Image source={require("../../imgs/category/JS.png")}/>
+                     <Text style={styles.flex_item_text}>JavaScript</Text>
+                     </View>
+                     <View style={styles.flex_item}>
+                     <Image source={require("../../imgs/category/jquery.png")}/>
+                     <Text style={styles.flex_item_text}>jQuery</Text>
+                     </View>
 
+                     </View>*/
 
-
-
-
-                       /* <View style={styles.flex_wrap}>
-                            <View style={styles.flex_item}>
-                                <Image source={require("../../imgs/category/html.png")}/>
-                                <Text style={styles.flex_item_text}>HTML/CSS</Text>
-                            </View>
-                            <View style={styles.flex_item}>
-                                <Image source={require("../../imgs/category/JS.png")}/>
-                                <Text style={styles.flex_item_text}>JavaScript</Text>
-                            </View>
-                            <View style={styles.flex_item}>
-                                <Image source={require("../../imgs/category/jquery.png")}/>
-                                <Text style={styles.flex_item_text}>jQuery</Text>
-                            </View>
-                            <View style={styles.flex_item}>
-                                <Image source={require("../../imgs/category/html.png")}/>
-                                <Text style={styles.flex_item_text}>HTML/CSS</Text>
-                            </View>
-                            <View style={styles.flex_item}>
-                                <Image source={require("../../imgs/category/JS.png")}/>
-                                <Text style={styles.flex_item_text}>JavaScript</Text>
-                            </View>
-                            <View style={styles.flex_item}>
-                                <Image source={require("../../imgs/category/jquery.png")}/>
-                                <Text style={styles.flex_item_text}>jQuery</Text>
-                            </View>
-                            <View style={styles.flex_item}>
-                                <Image source={require("../../imgs/category/html.png")}/>
-                                <Text style={styles.flex_item_text}>HTML/CSS</Text>
-                            </View>
-                            <View style={styles.flex_item}>
-                                <Image source={require("../../imgs/category/JS.png")}/>
-                                <Text style={styles.flex_item_text}>JavaScript</Text>
-                            </View>
-                            <View style={styles.flex_item}>
-                                <Image source={require("../../imgs/category/jquery.png")}/>
-                                <Text style={styles.flex_item_text}>jQuery</Text>
-                            </View>
-
-                        </View>*/
-
-
+                    }
                 </ScrollView>
             </View>
         )
