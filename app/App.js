@@ -14,6 +14,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Home from './views/home/Home'
 import Me from './views/me/Me'
 import Login from './views/login/Login'
+import Category from "./views/category/Category";
 
 export default class App extends React.Component{
 
@@ -42,7 +43,7 @@ const TabNav = TabNavigator({
         }
     },
     category: {
-        screen: Home,
+        screen: Category,
         navigationOptions: {  // 也可以写在组件的static navigationOptions内,这里的会覆盖页面内的
             tabBarLabel:"课程",
             tabBarIcon:({tintColor})=>{
