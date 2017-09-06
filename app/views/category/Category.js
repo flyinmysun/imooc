@@ -63,7 +63,7 @@ export default class Category extends React.Component{
                                             return(
                                                 <View style={styles.flex_item} key={i}>
                                                     <Image source={t.url}/>
-                                                    <Text style={styles.flex_item_text}>{t.name}</Text>
+                                                    <Text style={styles.flex_item_text} >{t.name}</Text>
                                                 </View>
                                             )
                                         })
