@@ -12,6 +12,9 @@ import {
     Alert
 } from 'react-native';
 import Slider from './components/Slider'
+import IconMenu from './components/IconMenu'
+import BlockTitle from './components/BlockTitle'
+import CourseList from './components/CourseList'
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
@@ -27,7 +30,7 @@ export default class Home extends React.Component{
         super(props);
 
         this.state = {
-            iconNavDatas:[{id:1,color:'#FFBA5B',label:'实战'},
+            iconMenuDatas:[{id:1,color:'#FFBA5B',label:'实战'},
                 {id:2,color:'#3DDB9A',label:'猿问'},
                 {id:3,color:'#45C3FF',label:'手记'},
                 {id:4,color:'#FF778E',label:'发现'}]
@@ -36,16 +39,15 @@ export default class Home extends React.Component{
 
     static navigationOptions = {
         headerTitle: (
-        <View style={{width:300}}>
-            <Text style={{color:'#fff',alignSelf:'center'}}>长河科技</Text>
-        </View>
+            <View style={{width:300}}>
+                <Text style={{color:'#fff',alignSelf:'center'}}>长河科技</Text>
+            </View>
         ),
         headerRight: (
             <FontAwesome name="envelope" size={20} color="#fff" style={{margin:8}}/>
         ),
         headerLeft: (
             <FontAwesome name="search" size={20} color="#fff" style={{margin:8}}/>
-            //<Text style={{color:'#fff',margin:8}}>搜索</Text>
         ),
         headerStyle: { backgroundColor:'#3C3C3C'},//顶部栏背景颜色
     }
@@ -70,17 +72,20 @@ export default class Home extends React.Component{
         return(
             <View>
                 <Slider sources={advImgs}/>
-                <View style={styles.iconNavWrap}>
-                    {this.state.iconNavDatas.map((item,index)=>{
-                        return(
-                            <View key={index} style={styles.iconNavItemWrap}>
-                                <View style={[styles.iconNavItemIcon,{backgroundColor:item.color}]}>
-                                    <FontAwesome name="envelope" size={16} color="#fff"/>
-                                </View>
-                                <Text style={{marginTop:10,fontSize:10}}>{item.label}</Text>
-                            </View>
-                        )
-                    })}
+                <IconMenu data={this.state.iconMenuDatas}></IconMenu>
+                <View style={{marginTop:10,backgroundColor:'#fff'}}>
+                    <BlockTitle iconName="envelope" iconColor="#ff00ff" title={'课程推荐'}></BlockTitle>
+                    <CourseList data={[1,2,3,4,5,6]}/>
+                </View>
+
+                <View style={{marginTop:10,backgroundColor:'#fff'}}>
+                    <BlockTitle iconName="glass" iconColor="#ffff00" title={'实战推荐'}></BlockTitle>
+                    <CourseList data={[1,2,3,4,5,6]}/>
+                </View>
+
+                <View style={{marginTop:10,backgroundColor:'#fff'}}>
+                    <BlockTitle iconName="home" iconColor="red" title={'热门推荐'}></BlockTitle>
+                    <CourseList data={[1,2,3,4,5,6]}/>
                 </View>
             </View>
         )
@@ -100,21 +105,5 @@ export default class Home extends React.Component{
 }
 
 var styles = StyleSheet.create({
-    iconNavWrap:{
-        flexDirection:'row',
-        width:width,
-        backgroundColor:"#fff",
-    },
-    iconNavItemWrap:{
-        alignItems:'center',
-        width:width/4,
-        padding:10
-    },
-    iconNavItemIcon:{
-        borderRadius:width/4*0.4/2,
-        width:width/4*0.4,
-        height:width/4*0.4,
-        justifyContent:'center',
-        alignItems:'center'
-    }
+
 });
