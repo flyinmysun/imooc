@@ -66,7 +66,7 @@ export default class Category extends React.Component{
                                         item.map((t,i)=>{
                                             return(
                                                 <View style={styles.flex_item} key={i}>
-                                                   /* <Image source={require()}/>*/
+
                                                     <Text style={styles.flex_item_text}>{t.name}</Text>
                                                 </View>
                                             )
