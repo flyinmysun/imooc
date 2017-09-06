@@ -1,6 +1,6 @@
 [
   {
-    "name":"前端开发",
+    "name":"前端开发" ,
     "items":[
       {"frontId":0,"name":"HTML/CSS","url":"../../imgs/category/html.png"},
       {"frontId":1,"name":"JavaScript","url":"../../imgs/category/Js.png"},

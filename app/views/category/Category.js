@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     container:{backgroundColor:"#f2f2f2",},
     course:{backgroundColor:"#fff",marginBottom:10,},
     course_text:{marginTop:16,marginBottom:16,fontSize:12,paddingLeft:5},
-    flex_wrap:{flexDirection:"row",flexWrap:"wrap",justifyContent:"flex-start"},
+    flex_wrap:{flexDirection:"row",flexWrap:"wrap",justifyContent:"flex-start" },
     flex_item:{
         width:width/3,
         padding:10,
