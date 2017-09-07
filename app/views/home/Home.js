@@ -9,12 +9,14 @@ import {
     FlatList,
     Dimensions,
     Image,
-    Alert
+    Alert,
+    ActivityIndicator
 } from 'react-native';
 import Slider from './components/Slider'
 import IconMenu from './components/IconMenu'
 import BlockTitle from './components/BlockTitle'
 import CourseList from './components/CourseList'
+import CourseItem from "./components/CourseItem";
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
@@ -26,16 +28,6 @@ const advImgs = [
 ];
 
 export default class Home extends React.Component{
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            iconMenuDatas:[{id:1,color:'#FFBA5B',label:'实战'},
-                {id:2,color:'#3DDB9A',label:'猿问'},
-                {id:3,color:'#45C3FF',label:'手记'},
-                {id:4,color:'#FF778E',label:'发现'}]
-        }
-    }
 
     static navigationOptions = {
         headerTitle: (
@@ -52,17 +44,68 @@ export default class Home extends React.Component{
         headerStyle: { backgroundColor:'#3C3C3C'},//顶部栏背景颜色
     }
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            iconMenuDatas:[{id:1,color:'#FFBA5B',label:'实战'},
+                {id:2,color:'#3DDB9A',label:'猿问'},
+                {id:3,color:'#45C3FF',label:'手记'},
+                {id:4,color:'#FF778E',label:'发现'}],
+            refreshing:false,
+            listData:[
+                {id:1,name:"zww"},
+                {id:2,name:"cy"},
+                {id:2,name:"aaa"},
+                {id:2,name:"bbb"}
+            ]
+        }
+    }
+
     componentDidMount(){
+        this._refreshing();
+    }
+
+    _refreshing=()=>{
+        this.setState({...this.state,refreshing:true});
+        let timer = setTimeout(()=>{
+            clearTimeout(timer)
+            this.setState({...this.state,refreshing:false});
+        },3000)
+    }
+
+    _onload=()=>{
+        let timer =  setTimeout(()=>{
+            this.setState({...this.state});
+            //clearTimeout(timer)
+            //alert('加载成功')
+        },1500)
     }
 
     render(){
         return(
             <FlatList
-                data={[{id:1,name:"zww"},{id:2,name:"cy"}]}
+                data={this.state.listData}
                 keyExtractor={this._keyExtractor}
                 renderItem={this._renderItem}
                 ListHeaderComponent={this._headerComponent}
+                ListFooterComponent={this._footerComponent} //尾部
+                //ItemSeparatorComponent={this._separator} //分隔块
                 extraData={this.state}
+                numColumns="2"
+                //columnWrapperStyle如果设置了多列布局（即将numColumns值设为大于1的整数），则可以额外指定此样式作用在每行容器上
+                columnWrapperStyle={{
+                    flexDirection:'row',
+                    flexWrap:'wrap',
+                    paddingLeft:10,
+                    paddingRight:10,
+                    justifyContent:'space-between',
+                    backgroundColor:'#fff'
+                }}
+                onRefresh={this._refreshing}
+                refreshing={this.state.refreshing}
+                onEndReachedThreshold={0.2}
+                onEndReached={this._onload}
             />
         )
     }
@@ -87,18 +130,40 @@ export default class Home extends React.Component{
                     <BlockTitle iconName="home" iconColor="red" title={'热门推荐'}></BlockTitle>
                     <CourseList data={[1,2,3,4,5,6]}/>
                 </View>
+
+                <View style={{marginTop:10,backgroundColor:'#fff'}}>
+                    <BlockTitle iconName="home" iconColor="red" title={'猜你喜欢'}></BlockTitle>
+                </View>
+            </View>
+        )
+    }
+
+    _footerComponent=()=>{
+        return(
+            <View style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection:'row'
+            }}>
+                <ActivityIndicator
+                    size="small"
+                    style={{width:15,padding:10}}
+                />
+                <Text style={{fontSize:10,color:'#555',marginLeft:10}}>上拉加载更多...</Text>
             </View>
         )
     }
 
     /**list**/
-    _renderItem =(Row)=>{
+    _renderItem =(Row)=>{ //Row.item.name Row.item是当前循环的数据item Row.index是当前数据的下标
         return(
-            <View>
-                <Text>{Row.item.name}</Text>
-            </View>
+            <CourseItem/>
         )
     }
+
+    /*<View style={{width:(width-30)/2,paddingBottom:10,}}>
+        <Text>{Row.item.name}</Text>
+    </View*/
 
     /**唯一key***/
     _keyExtractor = (item, index) => item.id;
