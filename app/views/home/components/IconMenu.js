@@ -2,7 +2,7 @@
  * Created by zhanwenwei on 2017/9/6.
  */
 import React from 'react'
-import {StyleSheet,Dimensions,View,Text} from 'react-native'
+import {StyleSheet,Dimensions,View,Text,TouchableOpacity} from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 var {width,height} = Dimensions.get('window');
 
@@ -16,12 +16,16 @@ export default class IconMenu extends React.Component{
             <View style={styles.iconNavWrap}>
                 {this.props.data.map((item,index)=>{
                     return(
-                        <View key={index} style={styles.iconNavItemWrap}>
-                            <View style={[styles.iconNavItemIcon,{backgroundColor:item.color}]}>
-                                <FontAwesome name="envelope" size={16} color="#fff"/>
+                        <TouchableOpacity key={index} onPress={()=>{
+                            this.props.iconItemClick(item)
+                        }}>
+                            <View style={styles.iconNavItemWrap}>
+                                <View style={[styles.iconNavItemIcon,{backgroundColor:item.color}]}>
+                                    <FontAwesome name="envelope" size={16} color="#fff"/>
+                                </View>
+                                <Text style={{marginTop:10,fontSize:10}}>{item.label}</Text>
                             </View>
-                            <Text style={{marginTop:10,fontSize:10}}>{item.label}</Text>
-                        </View>
+                        </TouchableOpacity>
                     )
                 })}
             </View>

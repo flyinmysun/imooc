@@ -48,10 +48,10 @@ export default class Home extends React.Component{
         super(props);
 
         this.state = {
-            iconMenuDatas:[{id:1,color:'#FFBA5B',label:'实战'},
-                {id:2,color:'#3DDB9A',label:'猿问'},
-                {id:3,color:'#45C3FF',label:'手记'},
-                {id:4,color:'#FF778E',label:'发现'}],
+            iconMenuDatas:[{type:1,color:'#FFBA5B',label:'实战'},
+                {type:2,color:'#3DDB9A',label:'猿问'},
+                {type:3,color:'#45C3FF',label:'手记'},
+                {type:4,color:'#FF778E',label:'发现'}],
             refreshing:false,
             listData:[
                 {id:1,name:"zww"},
@@ -64,22 +64,6 @@ export default class Home extends React.Component{
 
     componentDidMount(){
         this._refreshing();
-    }
-
-    _refreshing=()=>{
-        this.setState({...this.state,refreshing:true});
-        let timer = setTimeout(()=>{
-            clearTimeout(timer)
-            this.setState({...this.state,refreshing:false});
-        },3000)
-    }
-
-    _onload=()=>{
-        let timer =  setTimeout(()=>{
-            this.setState({...this.state});
-            //clearTimeout(timer)
-            //alert('加载成功')
-        },1500)
     }
 
     render(){
@@ -110,12 +94,32 @@ export default class Home extends React.Component{
         )
     }
 
+    _refreshing=()=>{
+        this.setState({...this.state,refreshing:true});
+        let timer = setTimeout(()=>{
+            clearTimeout(timer)
+            this.setState({...this.state,refreshing:false});
+        },3000)
+    }
+
+    _onload=()=>{
+        let timer =  setTimeout(()=>{
+            this.setState({...this.state});
+            //clearTimeout(timer)
+            //alert('加载成功')
+        },1500)
+    }
+
     /**list 头部**/
     _headerComponent=()=>{
         return(
             <View>
                 <Slider sources={advImgs}/>
-                <IconMenu data={this.state.iconMenuDatas}></IconMenu>
+                <IconMenu data={this.state.iconMenuDatas} iconItemClick={(item)=>{
+                    if(item.type == 2){
+                        this.props.navigation.navigate("YuanWen");
+                    }
+                }}></IconMenu>
                 <View style={{marginTop:10,backgroundColor:'#fff'}}>
                     <BlockTitle iconName="envelope" iconColor="#ff00ff" title={'课程推荐'}></BlockTitle>
                     <CourseList data={[1,2,3,4,5,6]}/>
