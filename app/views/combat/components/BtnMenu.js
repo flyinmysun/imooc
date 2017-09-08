@@ -9,6 +9,14 @@ var {width,height} = Dimensions.get('window');
 export default class BtnMenu extends React.Component{
     constructor(props){
         super(props)
+        this.state={
+            selectId:1,
+        }
+    }
+    _onPress=(type)=>{
+        this.setState({...this.state,selectId:type})
+
+
     }
 
     render(){
@@ -17,7 +25,10 @@ export default class BtnMenu extends React.Component{
                 {this.props.data.map((item,index)=>{
                     return(
                         <View style={styles.btnNavItemWrap} key={index}>
-                            <TouchableOpacity style={styles.touchableOpacity}>
+                            <TouchableOpacity style={[styles.touchableOpacity,
+                            this.state.selectId==item.type?"styles.activeBtn":""]} onPress={()=>{
+                                this._onPress(item.type)
+                            }}>
                                 <Text style={styles.btnText}>{item.label}</Text>
                             </TouchableOpacity>
                         </View>
@@ -55,5 +66,10 @@ var styles = StyleSheet.create({
     },
     btnText:{
         fontSize:10
+    },
+    activeBtn:{
+        color:"#fff",
+        backgroundColor:"red",
+        borderColor:"red",
     }
 })
