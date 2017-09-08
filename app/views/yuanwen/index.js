@@ -18,7 +18,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 var {width,height} = Dimensions.get('window');
 
-export default class index extends React.Component{
+export default class YuanWen extends React.Component{
 
     static navigationOptions = {
         headerTitle: (

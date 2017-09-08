@@ -48,7 +48,8 @@ export default class Home extends React.Component{
         super(props);
 
         this.state = {
-            iconMenuDatas:[{type:1,color:'#FFBA5B',label:'实战'},
+            iconMenuDatas:[
+                {type:1,color:'#FFBA5B',label:'实战'},
                 {type:2,color:'#3DDB9A',label:'猿问'},
                 {type:3,color:'#45C3FF',label:'手记'},
                 {type:4,color:'#FF778E',label:'发现'}],
@@ -116,10 +117,11 @@ export default class Home extends React.Component{
             <View>
                 <Slider sources={advImgs}/>
                 <IconMenu data={this.state.iconMenuDatas} iconItemClick={(item)=>{
+                    if(item.type == 1){this.props.navigation.navigate("Combat")}
                     if(item.type == 2){
                         this.props.navigation.navigate("YuanWen");
                     }
-                }}></IconMenu>
+                }}/>
                 <View style={{marginTop:10,backgroundColor:'#fff'}}>
                     <BlockTitle iconName="envelope" iconColor="#ff00ff" title={'课程推荐'}></BlockTitle>
                     <CourseList data={[1,2,3,4,5,6]}/>

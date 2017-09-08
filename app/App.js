@@ -15,6 +15,7 @@ import Home from './views/home/Home'
 import Me from './views/me/Me'
 import Login from './views/login/Login'
 import Category from "./views/category/Category";
+import Combat from "./views/combat/Combat"
 import YuanWen from "./views/yuanwen/index";
 
 export default class App extends React.Component{
@@ -104,6 +105,9 @@ const Navs = StackNavigator({
     Login: {
         screen: Login,
         navigationOptions: {} //覆盖组件内的`static navigationOptions`设置
+    },
+    Combat: {
+        screen: Combat,
     },
     YuanWen: {
         screen: YuanWen,
