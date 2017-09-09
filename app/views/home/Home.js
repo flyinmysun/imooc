@@ -118,9 +118,9 @@ export default class Home extends React.Component{
                 <Slider sources={advImgs}/>
                 <IconMenu data={this.state.iconMenuDatas} iconItemClick={(item)=>{
                     if(item.type == 1){this.props.navigation.navigate("Combat")}
-                    if(item.type == 2){
-                        this.props.navigation.navigate("YuanWen");
-                    }
+                    if(item.type == 2){this.props.navigation.navigate("YuanWen")}
+                    if(item.type == 3){this.props.navigation.navigate("Remember")}
+                    if(item.type == 4){this.props.navigation.navigate("Discover")}
                 }}/>
                 <View style={{marginTop:10,backgroundColor:'#fff'}}>
                     <BlockTitle iconName="envelope" iconColor="#ff00ff" title={'课程推荐'}></BlockTitle>

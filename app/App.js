@@ -17,6 +17,8 @@ import Login from './views/login/Login'
 import Category from "./views/category/Category";
 import Combat from "./views/combat/Combat"
 import YuanWen from "./views/yuanwen/index";
+import Remember from "./views/remember/Remember";
+import Discover from "./views/discover/Discover"
 
 export default class App extends React.Component{
 
@@ -111,6 +113,12 @@ const Navs = StackNavigator({
     },
     YuanWen: {
         screen: YuanWen,
+    },
+    Remember:{
+        screen:Remember,
+    },
+    Discover:{
+        screen:Discover,
     }
 
 }, {
