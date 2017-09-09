@@ -4,7 +4,9 @@
 import React from 'react'
 import {StyleSheet,Dimensions,View,Text,TouchableOpacity} from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Screen from "../../../utils/screen"
 var {width,height} = Dimensions.get('window');
+
 
 export default class BtnMenu extends React.Component{
     constructor(props){
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
         borderRadius:50,
         width:(width-40)/3,
         height:26,
-        borderWidth:1,
+        borderWidth:Screen.onePixel,
         borderColor:"#ccc",
         justifyContent:'center',
         alignItems:'center',

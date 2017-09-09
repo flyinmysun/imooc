@@ -49,6 +49,6 @@ var styles = StyleSheet.create({
         width:width/4*0.4,
         height:width/4*0.4,
         justifyContent:'center',
-        alignItems:'center'
-    }
+    alignItems:'center'
+}
 })

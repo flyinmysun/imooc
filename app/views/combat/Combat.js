@@ -48,6 +48,7 @@ export default class Combat extends React.Component{
                 <Text style={{color:'#fff',alignSelf:'center'}}>实战</Text>
             </View>
         ),
+        headerTintColor:"#fff",
         headerStyle: { backgroundColor:'#3C3C3C',elevation:0},//顶部栏背景颜色,去掉底边阴影
     }
 
@@ -55,18 +56,13 @@ export default class Combat extends React.Component{
     render(){
         return(
             <FlatList
+                data={this.state.BtnMenuDatas}
+                keyExtractor={this._keyExtractor}
+                renderItem={this._renderItem}
                 ListHeaderComponent={this._headerComponent}
                 //ItemSeparatorComponent={this._separator} //分隔块
-                numColumns="2"
+                //numColumns="2"  一行分几列显示，如果只有一列，则可以省略
                 //columnWrapperStyle如果设置了多列布局（即将numColumns值设为大于1的整数），则可以额外指定此样式作用在每行容器上
-                columnWrapperStyle={{
-                    flexDirection:'row',
-                    flexWrap:'wrap',
-                    paddingLeft:10,
-                    paddingRight:10,
-                    justifyContent:'space-between',
-                    backgroundColor:'#fff'
-                }}
             />
         )
     }
@@ -77,8 +73,17 @@ export default class Combat extends React.Component{
             <View>
                 <Slider sources={advImgs}/>
                 <BtnMenu data={this.state.BtnMenuDatas}/>
-                <CombatList data={[1,2,3,4,5,6]}/>
             </View>
+        )
+    }
+
+    /**FlatList 属性***/
+    /**唯一key***/
+    _keyExtractor=(item,index)=>index
+
+    _renderItem=(Row)=>{  //Row.item.name Row.item是当前循环的数据item Row.index是当前数据的下标
+        return(
+            <CombatList itemData={Row.item}/>
         )
     }
 
