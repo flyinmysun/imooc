@@ -41,7 +41,7 @@ export default class Home extends React.Component{
         headerLeft: (
             <FontAwesome name="search" size={20} color="#fff" style={{margin:8}}/>
         ),
-        headerStyle: { backgroundColor:'#3C3C3C'},//顶部栏背景颜色
+        headerStyle: { backgroundColor:'#3C3C3C'},//顶部栏背景颜色1
     }
 
     constructor(props) {
@@ -57,8 +57,8 @@ export default class Home extends React.Component{
             listData:[
                 {id:1,name:"zww"},
                 {id:2,name:"cy"},
-                {id:2,name:"aaa"},
-                {id:2,name:"bbb"}
+                {id:3,name:"aaa"},
+                {id:4,name:"bbb"}
             ]
         }
     }
@@ -168,8 +168,8 @@ export default class Home extends React.Component{
     }
 
     /*<View style={{width:(width-30)/2,paddingBottom:10,}}>
-        <Text>{Row.item.name}</Text>
-    </View*/
+     <Text>{Row.item.name}</Text>
+     </View*/
 
     /**唯一key***/
     _keyExtractor = (item, index) => item.id;

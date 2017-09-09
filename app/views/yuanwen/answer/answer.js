@@ -13,11 +13,9 @@ import {
     ActivityIndicator
 } from 'react-native';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
-
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 var {width,height} = Dimensions.get('window');
-//<FontAwesome name="search" size={20} color="#fff" style={{alignSelf:'flex-end'}}/>
 
 export default class YuanWen extends React.Component{
 
@@ -25,7 +23,7 @@ export default class YuanWen extends React.Component{
         headerTitle: (
             <View style={{width:300,flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <Text style={{color:'#fff',alignSelf:'center'}}>猿问</Text>
+                    <Text style={{color:'#fff',alignSelf:'center'}}>详情</Text>
                 </View>
                 <FontAwesome name="search" size={20} color="#fff" style={{alignSelf:'flex-end'}}/>
             </View>
@@ -49,25 +47,9 @@ export default class YuanWen extends React.Component{
 
     render(){
         return(
-            <ScrollableTabView
-                style={{}}//页面的背景
-                tabBarBackgroundColor='#fff' //头部标题栏背景
-                tabBarActiveTextColor='red' //选中文字颜色
-                tabBarInactiveTextColor='#555555' //未选中文字颜色
-                tabBarTextStyle={{marginTop:10}} //文字样式
-                tabBarUnderlineStyle={{backgroundColor:'red'}}
-                // renderTabBar={() => <DefaultTabBar style={styles.tabBar}/>}
-            >
-               <View tabLabel="页面一">
-                    <Text>页面一</Text>
-               </View>
-                <View tabLabel="页面二">
-                    <Text>页面二</Text>
-                </View>
-                <View tabLabel="页面三">
-                    <Text>页面三</Text>
-                </View>
-            </ScrollableTabView>
+           <View>
+               <Text>{this.props.navigation.state.params.question.name}</Text>
+           </View>
         )
     }
 }

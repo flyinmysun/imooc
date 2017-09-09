@@ -16,9 +16,10 @@ import Me from './views/me/Me'
 import Login from './views/login/Login'
 import Category from "./views/category/Category";
 import Combat from "./views/combat/Combat"
-import YuanWen from "./views/yuanwen/index";
 import Remember from "./views/remember/Remember";
 import Discover from "./views/discover/Discover"
+import YuanWen from "./views/yuanwen/index/index";
+import Answer from "./views/yuanwen/answer/answer";
 
 export default class App extends React.Component{
 
@@ -113,6 +114,9 @@ const Navs = StackNavigator({
     },
     YuanWen: {
         screen: YuanWen,
+    },
+    YuanWen_answer: {
+        screen: Answer,
     },
     Remember:{
         screen:Remember,
