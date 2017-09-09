@@ -52,7 +52,7 @@ var styles = StyleSheet.create({
         borderColor:"#ccc",
     },
     imgWrap:{
-        width:(width-10)/3,
+        width:(width-20)/3,
         height:50,
         justifyContent:"center",
         alignItems:"center",

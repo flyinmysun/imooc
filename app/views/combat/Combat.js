@@ -48,9 +48,6 @@ export default class Combat extends React.Component{
                 <Text style={{color:'#fff',alignSelf:'center'}}>实战</Text>
             </View>
         ),
-        headerLeft: (
-            <FontAwesome name="angle-left" size={20} color="#fff" style={{margin:8}}/>
-        ),
         headerStyle: { backgroundColor:'#3C3C3C',elevation:0},//顶部栏背景颜色,去掉底边阴影
     }
 

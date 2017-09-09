@@ -26,10 +26,10 @@ export default class BtnMenu extends React.Component{
                     return(
                         <View style={styles.btnNavItemWrap} key={index}>
                             <TouchableOpacity style={[styles.touchableOpacity,
-                            this.state.selectId==item.type?"styles.activeBtn":""]} onPress={()=>{
+                            this.state.selectId == item.type&&styles.activeBtn]} onPress={()=>{
                                 this._onPress(item.type)
                             }}>
-                                <Text style={styles.btnText}>{item.label}</Text>
+                                <Text style={[styles.btnText,this.state.selectId == item.type&&styles.activeText]}>{item.label}</Text>
                             </TouchableOpacity>
                         </View>
 
@@ -40,7 +40,7 @@ export default class BtnMenu extends React.Component{
     }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     btnNavWrap:{
         flexDirection:'row',
         flexWrap:"wrap",
@@ -68,8 +68,10 @@ var styles = StyleSheet.create({
         fontSize:10
     },
     activeBtn:{
-        color:"#fff",
         backgroundColor:"red",
         borderColor:"red",
+    },
+    activeText:{
+        color:"#fff"
     }
 })
