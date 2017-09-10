@@ -59,7 +59,7 @@ const TabNav = TabNavigator({
         }
     },
     shopping_cart: {
-        screen: Home,
+        screen: Category,
         navigationOptions: {  // 也可以写在组件的static navigationOptions内,这里的会覆盖页面内的
             tabBarLabel:"下载",
             tabBarIcon:({tintColor})=>{

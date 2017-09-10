@@ -5,8 +5,9 @@ import React from 'react'
 import {StyleSheet,View,Text,Image} from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Screen from "../../../utils/screen"
+import Comment from "./Comment"
 
-export default class CombatList extends React.Component{
+export default class Square extends React.Component{
     constructor(props){
         super(props)
     }
@@ -16,28 +17,21 @@ export default class CombatList extends React.Component{
         return(
             <View style={{backgroundColor:"#fff"}}>
                 <View style={styles.listItemWrap}>
-                    <View style={styles.textWrap}>
-                        <View style={styles.textTitleWrap}>
-                            <Text style={styles.textTitle}>我们都是一条龙，名字叫中国</Text>
-                        </View>
-                        <View style={styles.textOptionWrap}>
-                            <View style={styles.creatorWrap}>
-                                <Text style={styles.creator}>原创</Text>
-                            </View>
-                            <View  style={styles.commonTextWrap}>
-                                <Text style={styles.commonText}>1169浏览•</Text>
-                                <Text style={styles.commonText}>14推荐•</Text>
-                                <Text style={styles.commonText}>2评论</Text>
-                            </View>
-                        </View>
-                    </View>
                     <View style={styles.imgWrap}>
-                        <Image style={styles.img}
-                               resizeMode={Image.resizeMode.contain}
-                               source={require("../../../imgs/combat.png")}/>
+                        <FontAwesome name="user-circle-o" size={32} color="pink"/>
+                    </View>
+                    <View style={styles.textWrap}>
+                        <View style={styles.personInfoWrap}>
+                            <View style={styles.nameWrap}>
+                                <Text style={styles.name}>Flyinmysun</Text>
+                            </View>
+                            <View style={styles.timeWrap}>
+                                <Text style={styles.time}>6小时前</Text>
+                            </View>
+                        </View>
+                        {<Comment/>}
                     </View>
                 </View>
-
             </View>
         )
     }
@@ -46,7 +40,6 @@ export default class CombatList extends React.Component{
 const styles = StyleSheet.create({
     listItemWrap:{
         flex:1,
-        height:70,
         flexDirection:"row",
         paddingTop:10,
         paddingBottom:10,
@@ -56,45 +49,31 @@ const styles = StyleSheet.create({
         borderBottomColor:"#ccc",
     },
     imgWrap:{
-        justifyContent:"flex-end",
-        width:(Screen.width-20)/5,
+        justifyContent:"flex-start",
+        width:(Screen.width-20)/7,
     },
     img:{
-       flex:1
+        flex:1
     },
     textWrap:{
         flex:1,
     },
-    textTitleWrap:{
-        flex:1,
-        height:30,
-        marginBottom:10,
-    },
-    textTitle:{
-        fontSize:12,
-        fontWeight:"bold",
-    },
-    textOptionWrap:{
+    personInfoWrap:{},
+    nameWrap:{
         flexDirection:"row",
     },
-    creatorWrap:{
-        width:Screen.width/14,
-        height:14,
-        borderWidth:Screen.onePixel,
-        borderColor:"#ccc",
-        justifyContent:"center",
-        alignItems:"center",
+    name:{
+        fontSize:12,
         marginRight:10,
     },
-    creator:{
-        color:"#ccc",
+    timeWrap:{},
+    time:{
         fontSize:10,
-    },
-    commonTextWrap:{
-        flexDirection:"row",
-    },
-    commonText:{
         color:"#ccc",
-        fontSize:10,
-    }
+        lineHeight:14,
+    },
+
+
+
+
 })

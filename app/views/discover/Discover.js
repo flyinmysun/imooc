@@ -13,6 +13,7 @@ import {
     ActivityIndicator
 } from 'react-native';
 import Dynamic from "./components/Dynamic"
+import Square from "./components/Square"
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
@@ -76,7 +77,14 @@ export default class Discover extends React.Component {
                     />
                 </View>
                 <View tabLabel="广场">
-                    <Text>页面二</Text>
+                    <FlatList
+                        data={this.state.BtnMenuDatas}
+                        keyExtractor={this._keyExtractor2}
+                        renderItem={this._renderItem2}
+                        //ItemSeparatorComponent={this._separator} //分隔块
+                        //numColumns="2"  一行分几列显示，如果只有一列，则可以省略
+                        //columnWrapperStyle如果设置了多列布局（即将numColumns值设为大于1的整数），则可以额外指定此样式作用在每行容器上
+                    />
                 </View>
             </ScrollableTabView>
         )
@@ -84,10 +92,18 @@ export default class Discover extends React.Component {
 
     /**FlatList 属性***/
     /**唯一key***/
-    _keyExtractor = (item, index) => index
+    _keyExtractor = (item,index) => index
+    _keyExtractor2= (item,index) => index
     _renderItem = (Row) => {
         return (
             <Dynamic itemData={Row.item}/>
+        )
+
+
+    }
+    _renderItem2 = (Row) => {
+        return (
+            <Square itemData={Row.item}/>
         )
 
 

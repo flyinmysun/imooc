@@ -69,29 +69,32 @@ export default class Home extends React.Component{
 
     render(){
         return(
-            <FlatList
-                data={this.state.listData}
-                keyExtractor={this._keyExtractor}
-                renderItem={this._renderItem}
-                ListHeaderComponent={this._headerComponent}
-                ListFooterComponent={this._footerComponent} //尾部
-                //ItemSeparatorComponent={this._separator} //分隔块
-                extraData={this.state}
-                numColumns="2"
-                //columnWrapperStyle如果设置了多列布局（即将numColumns值设为大于1的整数），则可以额外指定此样式作用在每行容器上
-                columnWrapperStyle={{
-                    flexDirection:'row',
-                    flexWrap:'wrap',
-                    paddingLeft:10,
-                    paddingRight:10,
-                    justifyContent:'space-between',
-                    backgroundColor:'#fff'
-                }}
-                onRefresh={this._refreshing}
-                refreshing={this.state.refreshing}
-                onEndReachedThreshold={0.2}
-                onEndReached={this._onload}
-            />
+            <View>
+                <FlatList
+                    data={this.state.listData}
+                    keyExtractor={this._keyExtractor}
+                    renderItem={this._renderItem}
+                    ListHeaderComponent={this._headerComponent}
+                    ListFooterComponent={this._footerComponent} //尾部
+                    //ItemSeparatorComponent={this._separator} //分隔块
+                    extraData={this.state}
+                    numColumns="2"
+                    //columnWrapperStyle如果设置了多列布局（即将numColumns值设为大于1的整数），则可以额外指定此样式作用在每行容器上
+                    columnWrapperStyle={{
+                        flexDirection:'row',
+                        flexWrap:'wrap',
+                        paddingLeft:10,
+                        paddingRight:10,
+                        justifyContent:'space-between',
+                        backgroundColor:'#fff'
+                    }}
+                    //onRefresh={this._refreshing}
+                    //refreshing={this.state.refreshing}
+                    onEndReachedThreshold={0.2}
+                    onEndReached={this._onload}
+                />
+            </View>
+
         )
     }
 
