@@ -20,6 +20,7 @@ import Remember from "./views/remember/Remember";
 import Discover from "./views/discover/Discover"
 import YuanWen from "./views/yuanwen/index/index";
 import Answer from "./views/yuanwen/answer/answer";
+import DownLoad from "./views/download/DownLoad";
 
 export default class App extends React.Component{
 
@@ -58,8 +59,8 @@ const TabNav = TabNavigator({
             }
         }
     },
-    shopping_cart: {
-        screen: Category,
+    download: {
+        screen: DownLoad,
         navigationOptions: {  // 也可以写在组件的static navigationOptions内,这里的会覆盖页面内的
             tabBarLabel:"下载",
             tabBarIcon:({tintColor})=>{
@@ -123,7 +124,8 @@ const Navs = StackNavigator({
     },
     Discover:{
         screen:Discover,
-    }
+    },
+
 
 }, {
     initialRouteName: 'TabNav', // 默认显示界面

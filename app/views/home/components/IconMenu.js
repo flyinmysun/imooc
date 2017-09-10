@@ -23,7 +23,7 @@ export default class IconMenu extends React.Component{
                                 <View style={[styles.iconNavItemIcon,{backgroundColor:item.color}]}>
                                     <FontAwesome name="envelope" size={16} color="#fff"/>
                                 </View>
-                                <Text style={{marginTop:10,fontSize:10}}>{item.label}</Text>
+                                <Text style={{marginTop:10,fontSize:12}}>{item.label}</Text>
                             </View>
                         </TouchableOpacity>
                     )
