@@ -37,7 +37,21 @@ export default class Me extends React.Component{
         headerTitle:"我的",
         header:null,
     }
+
+    componentDidMount(){
+        //alert(global.isLogin);
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+        //alert(global.isLogin);
+    }
+
+    componentDidUpdate(){
+
+    }
+
     render(){
+
         return(
             <ScrollView>
                 <Top itemClick={()=>{this.props.navigation.navigate("Login")}}/>

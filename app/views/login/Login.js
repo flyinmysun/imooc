@@ -16,6 +16,10 @@ export default class Login extends React.Component{
 
     }
 
+    componentDidUpdate(){
+
+    }
+
     render(){
         return(
             <View style={styles.loginWrap}>
@@ -45,7 +49,9 @@ export default class Login extends React.Component{
                         </View>
                     </View>
                     <View style={styles.loginBtnWrap}>
-                        <TouchableOpacity style={styles.loginBtn}>
+                        <TouchableOpacity style={styles.loginBtn} onPress={()=>{
+                            global.isLogin = true;
+                        }}>
                             <Text style={styles.loginBtnText}>登录</Text>
                         </TouchableOpacity>
                         <Text style={styles.commonText}>忘记密码</Text>
