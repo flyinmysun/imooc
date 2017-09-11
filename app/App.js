@@ -108,7 +108,9 @@ const Navs = StackNavigator({
     TabNav: { screen: TabNav },
     Login: {
         screen: Login,
-        navigationOptions: {} //覆盖组件内的`static navigationOptions`设置
+        navigationOptions: {
+            header:null,
+        } //覆盖组件内的`static navigationOptions`设置
     },
     Combat: {
         screen: Combat,
