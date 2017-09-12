@@ -17,7 +17,7 @@ export default class IconMenu extends React.Component{
                 {this.props.data.map((item,index)=>{
                     return(
                         <TouchableOpacity key={index} onPress={()=>{
-
+                            //alert(item)
                         }}>
                             <View style={styles.iconNavItemWrap}>
                                 <FontAwesome name={item.IconName} size={20} color={item.color}/>

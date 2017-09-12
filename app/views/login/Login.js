@@ -58,7 +58,7 @@ export default class Login extends React.Component{
                     </View>
                     <View style={styles.footer}>
                         <Text style={styles.commonText}>注册</Text>
-                        <Text style={{fontSize:10,color:"#828282",marginTop:30}}>社交账号登录</Text>
+                        <Text style={{fontSize:10,color:"#828282",marginTop:20}}>社交账号登录</Text>
                     </View>
                 </ImageBackground>
             </View>
@@ -129,7 +129,7 @@ const styles=StyleSheet.create({
     footer:{
         justifyContent:"center",
         alignItems:"center",
-        marginTop:120,
+        marginTop:130,
     },
 })
 

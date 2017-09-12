@@ -21,6 +21,8 @@ import Discover from "./views/discover/Discover"
 import YuanWen from "./views/yuanwen/index/index";
 import Answer from "./views/yuanwen/answer/answer";
 import DownLoad from "./views/download/DownLoad";
+import Setting from "./views/me/subScreen/Setting";
+import History from "./views/me/subScreen/History";
 
 export default class App extends React.Component{
 
@@ -127,6 +129,12 @@ const Navs = StackNavigator({
     Discover:{
         screen:Discover,
     },
+    History:{
+      screen:History,
+    },
+    Setting:{
+        screen:Setting,
+    }
 
 
 }, {

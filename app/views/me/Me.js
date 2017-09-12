@@ -56,7 +56,12 @@ export default class Me extends React.Component{
             <ScrollView>
                 <Top itemClick={()=>{this.props.navigation.navigate("Login")}}/>
                 <IconMenu data={this.state.iconMenuDatas}/>
-                <ListItem data={this.state.listItemDatas}/>
+                <ListItem data={this.state.listItemDatas}
+                          subScreen={(item)=>{//不能用if来进行判断
+                              item.type==1&&this.props.navigation.navigate("History")
+                              item.type==6&&this.props.navigation.navigate("Setting")
+
+                          }}/>
             </ScrollView>
         )
     }

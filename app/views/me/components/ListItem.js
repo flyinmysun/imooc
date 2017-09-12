@@ -17,17 +17,22 @@ export default class ListItem extends React.Component{
             <View style={{backgroundColor:"#fff",marginTop:10}}>
                 {this.props.data.map((item,index)=>{
                     return(
-                        <View style={styles.listItemWrap} key={index}>
-                            <View style={styles.iconWrap}>
-                                <FontAwesome size={14} color={item.color} name={item.IconName}/>
+                        <TouchableOpacity key={index}  onPress={()=>{
+                            this.props.subScreen(item);
+                        }}>
+                            <View style={styles.listItemWrap} >
+                                <View style={styles.iconWrap}>
+                                    <FontAwesome size={14} color={item.color} name={item.IconName}/>
+                                </View>
+                                <View style={styles.itemTextWrap}
+                                      onPress={()=>{alert(1)}}>
+                                    <Text style={styles.itemText}>{item.label}</Text>
+                                </View>
+                                <View style={styles.arrowWrap}>
+                                    <FontAwesome name="angle-right" color="#999" size={14}/>
+                                </View>
                             </View>
-                            <View style={styles.itemTextWrap}>
-                                <Text style={styles.itemText}>{item.label}</Text>
-                            </View>
-                            <View style={styles.arrowWrap}>
-                                <FontAwesome name="angle-right" color="#999" size={14}/>
-                            </View>
-                        </View>
+                        </TouchableOpacity>
                     )
                 })}
 

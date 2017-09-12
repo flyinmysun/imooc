@@ -62,7 +62,7 @@ export default class Top extends React.Component{
                                 </View>
                             </View>
                         </View>:
-                        <View style={[styles.topWrap]}>
+                        <View style={[styles.topWrap,styles.center]}>
                             <FontAwesome name="user-circle-o" size={46} color="#fafafa"/>
                             <TouchableOpacity onPress={()=>{
                                 this._onPress();
@@ -82,6 +82,10 @@ const styles = StyleSheet.create({
         backgroundColor:"#34394b",
         height:150,
         padding:10,
+    },
+    center:{
+      justifyContent:"center",
+      alignItems:"center",
     },
     noLoginTop:{
         justifyContent:"center",
