@@ -14,7 +14,7 @@ export default class ListItem extends React.Component{
 
     render(){
         return(
-            <View style={{backgroundColor:"#fff",marginTop:10}}>
+            <View style={[this.props.style]}>
                 {this.props.data.map((item,index)=>{
                     return(
                         <TouchableOpacity key={index}  onPress={()=>{

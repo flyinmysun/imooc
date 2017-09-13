@@ -18,9 +18,13 @@ export default class ListItem extends React.Component{
                 {this.props.data.map((item,index)=>{
                     return(
                         <View style={styles.listItemWrap} key={index}>
-                            <View style={styles.iconWrap}>
-                                <FontAwesome size={30} color={item.color} name={item.IconName}/>
-                            </View>
+                            {
+                                item.IconNam&&
+                                <View style={styles.iconWrap}>
+                                    <FontAwesome size={30} color={item.color} name={item.IconName}/>
+                                </View>
+                            }
+
                             <View style={styles.itemTextWrap}>
                                 <Text style={styles.itemText}>{item.name}</Text>
                             </View>

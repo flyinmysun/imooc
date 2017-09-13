@@ -10,7 +10,10 @@ import {
 } from 'react-native';
 import Top from "./components/Top"
 import IconMenu from "./components/IconMenu"
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
 import ListItem from "./components/ListItem"
+import ListItem2 from "./components/ListItem2"
 
 export default class Me extends React.Component{
     constructor(props){
@@ -68,12 +71,27 @@ export default class Me extends React.Component{
                         goIconMenuScreen={(item)=>{
                             this.props.navigation.navigate("MyCategory")
                         }}/>
-                <ListItem data={this.state.listItemDatas}
+                {/*<ListItem data={this.state.listItemDatas} style={{marginTop:10,backgroundColor:'#fff'}}
                           subScreen={(item)=>{//不能用if来进行判断?
                               item.type==1&&this.props.navigation.navigate("History");
                               item.type==6&&this.props.navigation.navigate("Setting")
 
-                          }}/>
+                          }}/>*/}
+                <View style={{marginTop:10,backgroundColor:'#fff'}}>
+                    <ListItem2 title="历史路径" showBottomBorder={true}
+                        icon={ <FontAwesome size={12} color={'red'} name="home"/>}/>
+                    <ListItem2 title="我的路径" extra={<FontAwesome size={12} color={'red'} name="home"/>}/>
+                </View>
+
+                <View style={{marginTop:10,backgroundColor:'#fff'}}>
+                    <ListItem2 title="历史路径" showBottomBorder={true}/>
+                    <ListItem2 title="我的路径" extra="aaa" callback={()=>{
+
+                    }}/>
+                    <ListItem2 title="设置" callback={()=>{
+                        this.props.navigation.navigate("Setting")
+                    }}/>
+                </View>
             </ScrollView>
         )
     }
