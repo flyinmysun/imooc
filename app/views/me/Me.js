@@ -29,7 +29,8 @@ export default class Me extends React.Component{
                 {type:4,color:'#20cc85',IconName:"gg",label:'我的订单'},
                 {type:5,color:'#ffa01e',IconName:"gratipay",label:'优惠券'},
                 {type:6,color:'#20cc85',IconName:"cog",label:'设置'},
-            ]
+            ],
+            isLogin:false
         }
     }
 
@@ -39,22 +40,30 @@ export default class Me extends React.Component{
     }
 
     componentDidMount(){
-        //alert(global.isLogin);
+
     }
 
-    shouldComponentUpdate(nextProps, nextState){
-        //alert(global.isLogin);
+    componentWillReceiveProps(nextProps){
+
     }
 
     componentDidUpdate(){
+        if(this.props.screenProps.active == 'me'){
+            if(this.state.isLogin != global.isLogin){
+                this.setState({...this.state,isLogin:global.isLogin});
+            }
+        }
 
+        if(this.props.screenProps.inactive == 'me'){
+            //alert("inactive me"+global.isLogin);
+        }
     }
 
     render(){
 
         return(
             <ScrollView>
-                <Top itemClick={()=>{this.props.navigation.navigate("Login")}}/>
+                <Top itemClick={()=>{this.props.navigation.navigate("Login")}} isLogin={this.state.isLogin}/>
                 <IconMenu data={this.state.iconMenuDatas}/>
                 <ListItem data={this.state.listItemDatas}
                           subScreen={(item)=>{//不能用if来进行判断

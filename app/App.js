@@ -28,11 +28,40 @@ export default class App extends React.Component{
 
     constructor(props){
         super(props)
+
+        this.state = {
+            active:'',
+            inactive:''
+            /*home:{active:true},
+            category:{active:false},
+            download:{active:false},
+            me:{active:false}*/
+        }
+
+        global.app = this;
+    }
+
+    // gets the current screen from navigation state
+    getCurrentRouteName(navigationState) {
+        if (!navigationState) {
+            return null;
+        }
+        const route = navigationState.routes[navigationState.index];
+        // dive into nested navigators
+        if (route.routes) {
+            return this.getCurrentRouteName(route);
+        }
+        return route.routeName;
     }
 
     render(){
         return(
-            <Navs></Navs>
+            <Navs screenProps={{active:this.state.active,inactive:this.state.inactive}}
+                  onNavigationStateChange={(prevState, currentState) => {
+                const currentScreen = this.getCurrentRouteName(currentState);
+                const prevScreen = this.getCurrentRouteName(prevState);
+                this.setState({...this.state,active:currentScreen,inactive:prevScreen})
+            }}/>
         )
     }
 }
@@ -72,7 +101,7 @@ const TabNav = TabNavigator({
             }
         }
     },
-    Me: {
+    me: {
         screen: Me,
         navigationOptions: {
             tabBarLabel:"我的",
@@ -88,6 +117,7 @@ const TabNav = TabNavigator({
     tabBarPosition: 'bottom', // 显示在底端，android 默认是显示在页面顶端的
     swipeEnabled: false, // 是否可以左右滑动切换tab
     backBehavior: 'none', // 按 back 键是否跳转到第一个Tab(首页)， none 为不跳转
+    lazy:true,
     tabBarOptions: {
         activeTintColor: 'red', // 文字和图片选中颜色
         inactiveTintColor: '#999', // 文字和图片未选中颜色
@@ -148,3 +178,36 @@ const Navs = StackNavigator({
     onTransitionStart: ()=>{ console.log('导航栏切换开始'); },  // 回调
     onTransitionEnd: ()=>{ console.log('导航栏切换结束'); }  // 回调
 });
+
+/*const defaultGetStateForAction = Navs.router.getStateForAction; //可以重写，可以调用
+const defaultGetComponentForRouteName = TabNav.router.getComponentForRouteName;
+TabNav.router.getComponentForRouteName = (routeName) =>{
+
+    console.log(routeName)
+    return defaultGetComponentForRouteName(routeName);
+}
+
+Navs.router.getStateForAction = (action, state) => {
+
+    console.log(state);
+    //state 当前状态 state.routes
+    if(state && state.index == 1){
+        return {
+            ...state,
+            routes:[...state.routes],
+            index: 0
+        };
+        //return null;  //阻止返回
+    }
+    if (
+        state &&state.routes[state.index]&&
+        state.routes[state.index].params
+    ) {
+        // Returning null from getStateForAction means that the action
+        // has been handled/blocked, but there is not a new state
+        return null;
+    }
+
+    return defaultGetStateForAction(action, state);
+};*/
+

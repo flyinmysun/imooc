@@ -10,9 +10,12 @@ export default class Top extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            isLogin:false,
         }
     }
+
+    componentWillReceiveProps(nextProps){
+    }
+
     _onPress=()=>{
        this.props.itemClick();
        // this.setState({...this.state,isLogin:true});
@@ -23,7 +26,7 @@ export default class Top extends React.Component{
         return(
             <View>
                 {
-                    this.state.isLogin?
+                    this.props.isLogin?
                         <View style={[styles.topWrap]}>
                             <View>
                                 <View style={styles.InfoWrap}>

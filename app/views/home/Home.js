@@ -30,18 +30,15 @@ const advImgs = [
 export default class Home extends React.Component{
 
     static navigationOptions = {
-        headerTitle: (
-            <View style={{width:300}}>
-                <Text style={{color:'#fff',alignSelf:'center'}}>长河科技</Text>
-            </View>
-        ),
+        headerTintColor: "#fff",
+        headerTitle:"长河科技",
         headerRight: (
             <FontAwesome name="envelope" size={20} color="#fff" style={{margin:8}}/>
         ),
         headerLeft: (
             <FontAwesome name="search" size={20} color="#fff" style={{margin:8}}/>
         ),
-        headerStyle: { backgroundColor:'#3C3C3C'},//顶部栏背景颜色1
+        headerStyle: { backgroundColor:'#2b333b'},//顶部栏背景颜色1
     }
 
     constructor(props) {
@@ -64,7 +61,8 @@ export default class Home extends React.Component{
     }
 
     componentDidMount(){
-        this._refreshing();
+        //this.props.navigation.navigate('Me')
+        //this._refreshing();
     }
 
     render(){
