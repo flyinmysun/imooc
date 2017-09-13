@@ -23,6 +23,8 @@ import Answer from "./views/yuanwen/answer/answer";
 import DownLoad from "./views/download/DownLoad";
 import Setting from "./views/me/subScreen/Setting";
 import History from "./views/me/subScreen/History";
+import MyCategory from  "./views/me/iconMenuScreen/MyCategory"
+import CategoryDetail from "./views/category/CategoryDetail";
 
 export default class App extends React.Component{
 
@@ -164,6 +166,12 @@ const Navs = StackNavigator({
     },
     Setting:{
         screen:Setting,
+    },
+    MyCategory:{
+        screen:MyCategory,
+    },
+    CategoryDetail:{
+        screen:CategoryDetail,
     }
 
 

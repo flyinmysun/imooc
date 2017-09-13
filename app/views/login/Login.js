@@ -5,7 +5,7 @@ import React from 'react'
 import {StyleSheet,View,Text,TouchableOpacity,ImageBackground,TextInput } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Screen from "../../utils/screen"
-import ShowPanel from "./components/ShowPanel";
+//import ShowPanel from "./components/ShowPanel";
 
 export default class Login extends React.Component{
     constructor(props) {
@@ -22,8 +22,6 @@ export default class Login extends React.Component{
             <View style={styles.loginWrap}>
                 <ImageBackground source={require("../../imgs/logoBg.png")}
                                 style={{flex:1}} >
-                    <ShowPanel num={this.state.num} />
-
                     <View style={styles.titleWrap}>
                         <Text style={{fontSize:20,color:"#fff"}}>欢迎登录长河</Text>
                     </View>
@@ -50,7 +48,6 @@ export default class Login extends React.Component{
                     <View style={styles.loginBtnWrap}>
                         <TouchableOpacity style={styles.loginBtn} onPress={()=>{
                             //global.isLogin = true;
-                            this.setState({...this.state,num:this.state.num+=1})
                         }}>
                             <Text style={styles.loginBtnText}>登录</Text>
                         </TouchableOpacity>

@@ -17,7 +17,7 @@ export default class IconMenu extends React.Component{
                 {this.props.data.map((item,index)=>{
                     return(
                         <TouchableOpacity key={index} onPress={()=>{
-                            //alert(item)
+                            this.props.goIconMenuScreen(item);
                         }}>
                             <View style={styles.iconNavItemWrap}>
                                 <FontAwesome name={item.IconName} size={20} color={item.color}/>
@@ -31,7 +31,7 @@ export default class IconMenu extends React.Component{
     }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     iconNavWrap:{
         flexDirection:'row',
         width:width,

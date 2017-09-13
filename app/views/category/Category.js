@@ -9,7 +9,7 @@ import {
     ScrollView,
     Dimensions,
     Image,
-    Alert
+    TouchableOpacity
 } from 'react-native';
 import Data from "../../DataJson/category.json"
 
@@ -61,10 +61,14 @@ export default class Category extends React.Component{
                                     {
                                         item.items.map((t,i)=>{
                                             return(
-                                                <View style={styles.flex_item} key={i}>
-                                                    <Image source={t.url}/>
-                                                    <Text style={styles.flex_item_text} >{t.name}</Text>
-                                                </View>
+                                                <TouchableOpacity key={i} onPress={()=>{
+                                                    this.props.navigation.navigate("CategoryDetail",{item:t})
+                                                }}>
+                                                    <View style={styles.flex_item} >
+                                                        <Image source={t.url}/>
+                                                        <Text style={styles.flex_item_text} >{t.name}</Text>
+                                                    </View>
+                                                </TouchableOpacity>
                                             )
                                         })
                                     }
