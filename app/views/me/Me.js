@@ -7,7 +7,8 @@ import {
     Text,
     View,
     ScrollView,
-    Switch
+    Switch,
+    DeviceEventEmitter
 } from 'react-native';
 import Top from "./components/Top"
 import IconMenu from "./components/IconMenu"
@@ -45,7 +46,8 @@ export default class Me extends React.Component{
     }
 
     componentDidMount(){
-
+        DeviceEventEmitter.addListener('test',
+            () =>{this.setState({...this.state,isLogin:global.isLogin})});
     }
 
     componentWillReceiveProps(nextProps){
@@ -55,13 +57,17 @@ export default class Me extends React.Component{
     componentDidUpdate(){
         if(this.props.screenProps.active == 'me'){
             if(this.state.isLogin != global.isLogin){
-                this.setState({...this.state,isLogin:global.isLogin});
+                //this.setState({...this.state,isLogin:global.isLogin});
             }
         }
 
         if(this.props.screenProps.inactive == 'me'){
             //alert("inactive me"+global.isLogin);
         }
+    }
+
+    updateOk(name){
+        alert(name);
     }
 
     render(){
@@ -103,7 +109,7 @@ export default class Me extends React.Component{
                     <ListItem2 title="设置"
                                icon={ <FontAwesome size={14} color={'#14b4ff'} name="cog"/>}
                                callback={()=>{
-                                   this.props.navigation.navigate("Setting")}}/>
+                                   this.props.navigation.navigate("Setting",{updateOk:this.updateOk})}}/>
 
 
                 </View>

@@ -71,7 +71,9 @@ export default class Setting extends React.Component{
                         this.props.navigation.navigate("me")
                         global.isLogin = false;
                     }}>
-                        <Text style={styles.btnText}>退出登录</Text>
+                        <Text style={styles.btnText} onPress={()=>{
+                            this.props.navigation.state.params.updateOk("aaa");
+                        }}>退出登录</Text>
                     </TouchableOpacity>
                 </View>
             </View>

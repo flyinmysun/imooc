@@ -2,7 +2,8 @@
  * Created by zhanwenwei on 2017/8/28.
  */
 import React from 'react'
-import {StyleSheet,View,Text,TouchableOpacity,ImageBackground,TextInput } from 'react-native'
+import {StyleSheet,View,Text,TouchableOpacity,
+    ImageBackground,TextInput,DeviceEventEmitter } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Screen from "../../utils/screen"
 //import ShowPanel from "./components/ShowPanel";
@@ -18,11 +19,12 @@ export default class Login extends React.Component{
 
     _login=()=>{
         let param={
-            userName:"1",
-            password:"1"
+            mobile:"13517317885",
+            password:"123456"
         }
-        fetch("./data/loginServer",{
-            method: "GET",
+        const url="http://115.159.6.189:4000/api/v1/user/login"
+        fetch(url,{
+            method: "POST",
             mode: "cors",  //允许跨域
             credentials: "include",//允许传cookies
             headers: {"content-type" : 'application/json'},
@@ -30,20 +32,23 @@ export default class Login extends React.Component{
         }).then((response)=> {
             if (response.ok) {
                 response.json().then((data)=>{
-                    if(data && data.success==true){
+                    //alert(JSON.stringify(data));
+                    if(data && data.status==0){
                         let res = data.result;
+                        global.userInfo = res;
                         global.isLogin = true;
-                        this.props.navigation.navigate("Me")
+                        alert(global.isLogin)
+                        this.props.navigation.goBack();
+                        DeviceEventEmitter.emit('test');
                     }else{
-                        console.log(data.errorMsg)
+                        alert(data.errorMsg)
                     }
                 });
             } else {
-                console.log('请求失败，状态码为', response.status);
+                alert('请求失败，状态码为', response.status);
             }
         });
     }
-
 
 
     render(){
@@ -76,10 +81,10 @@ export default class Login extends React.Component{
                     </View>
                     <View style={styles.loginBtnWrap}>
                         <TouchableOpacity style={styles.loginBtn} onPress={()=>{
-                            //this._login()
-                            alert(1)
-                            this.props.navigation.navigate("me")
-                            global.isLogin = true;
+                            this._login()
+                            //alert(1)
+                            //this.props.navigation.navigate("me")
+                            //global.isLogin = true;
                             //alert(global.isLogin)
                         }}>
                             <Text style={styles.loginBtnText}>登录</Text>

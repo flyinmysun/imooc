@@ -63,7 +63,7 @@ export default class App extends React.Component{
                   onNavigationStateChange={(prevState, currentState) => {
                 const currentScreen = this.getCurrentRouteName(currentState);
                 const prevScreen = this.getCurrentRouteName(prevState);
-                this.setState({...this.state,active:currentScreen,inactive:prevScreen})
+                //this.setState({...this.state,active:currentScreen,inactive:prevScreen})
             }}/>
         )
     }
