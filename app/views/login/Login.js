@@ -16,6 +16,35 @@ export default class Login extends React.Component{
         }
     }
 
+    _login=()=>{
+        let param={
+            userName:"1",
+            password:"1"
+        }
+        fetch("./data/loginServer",{
+            method: "GET",
+            mode: "cors",  //允许跨域
+            credentials: "include",//允许传cookies
+            headers: {"content-type" : 'application/json'},
+            body: JSON.stringify(param)
+        }).then((response)=> {
+            if (response.ok) {
+                response.json().then((data)=>{
+                    if(data && data.success==true){
+                        let res = data.result;
+                        global.isLogin = true;
+                        this.props.navigation.navigate("Me")
+                    }else{
+                        console.log(data.errorMsg)
+                    }
+                });
+            } else {
+                console.log('请求失败，状态码为', response.status);
+            }
+        });
+    }
+
+
 
     render(){
         return(
@@ -47,7 +76,11 @@ export default class Login extends React.Component{
                     </View>
                     <View style={styles.loginBtnWrap}>
                         <TouchableOpacity style={styles.loginBtn} onPress={()=>{
-                            //global.isLogin = true;
+                            //this._login()
+                            alert(1)
+                            this.props.navigation.navigate("me")
+                            global.isLogin = true;
+                            //alert(global.isLogin)
                         }}>
                             <Text style={styles.loginBtnText}>登录</Text>
                         </TouchableOpacity>
@@ -92,6 +125,7 @@ const styles=StyleSheet.create({
         paddingVertical:15,
         paddingHorizontal:10,
         fontSize:12,
+        color:"#fff"
     },
     iconWrap:{
         width:20,
