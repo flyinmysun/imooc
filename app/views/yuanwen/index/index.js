@@ -44,6 +44,11 @@ export default class YuanWen extends React.Component{
     }
 
     componentDidMount(){
+        alert("mount");
+    }
+
+    componentWillUpdate() {
+        alert("componentWillUpdate");
     }
 
     render(){

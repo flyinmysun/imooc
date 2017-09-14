@@ -23,7 +23,7 @@ export default class Login extends React.Component{
                 <ImageBackground source={require("../../imgs/logoBg.png")}
                                 style={{flex:1}} >
                     <View style={styles.titleWrap}>
-                        <Text style={{fontSize:20,color:"#fff"}}>欢迎登录长河</Text>
+                        <Text style={{fontSize:20,color:"#fff",backgroundColor:'transparent'}}>欢迎登录长河</Text>
                     </View>
                     <View style={styles.loginInfoWrap}>
                         <View style={styles.userInfoWrap}>
@@ -55,7 +55,7 @@ export default class Login extends React.Component{
                     </View>
                     <View style={styles.footer}>
                         <Text style={styles.commonText}>注册</Text>
-                        <Text style={{fontSize:10,color:"#828282",marginTop:20}}>社交账号登录</Text>
+                        <Text style={{fontSize:10,color:"#fff",marginTop:20,backgroundColor:'transparent'}}>社交账号登录</Text>
                     </View>
                 </ImageBackground>
             </View>
@@ -89,7 +89,8 @@ const styles=StyleSheet.create({
     },
     userInput:{
         flex:1,
-        paddingLeft:10,
+        paddingVertical:15,
+        paddingHorizontal:10,
         fontSize:12,
     },
     iconWrap:{
@@ -122,6 +123,7 @@ const styles=StyleSheet.create({
     commonText:{
         fontSize:12,
         color:"#828282",
+        backgroundColor:'transparent'
     },
     footer:{
         justifyContent:"center",
