@@ -6,7 +6,8 @@ import {
     StyleSheet,
     Text,
     View,
-    ScrollView
+    ScrollView,
+    Switch
 } from 'react-native';
 import Top from "./components/Top"
 import IconMenu from "./components/IconMenu"
@@ -33,7 +34,8 @@ export default class Me extends React.Component{
                 {type:5,color:'#ffa01e',IconName:"gratipay",label:'优惠券'},
                 {type:6,color:'#20cc85',IconName:"cog",label:'设置'},
             ],
-            isLogin:false
+            isLogin:false,
+            onOff:false,
         }
     }
 
@@ -65,8 +67,8 @@ export default class Me extends React.Component{
     render(){
 
         return(
-            <ScrollView>
-                <Top itemClick={()=>{this.props.navigation.navigate("Login")}}/>
+            <ScrollView >
+                <Top test={this.state.isLogin} itemClick={()=>{this.props.navigation.navigate("Login")}}/>
                 <IconMenu data={this.state.iconMenuDatas}
                         goIconMenuScreen={(item)=>{
                             this.props.navigation.navigate("MyCategory")
@@ -77,22 +79,40 @@ export default class Me extends React.Component{
                               item.type==6&&this.props.navigation.navigate("Setting")
 
                           }}/>*/}
-                <View style={{marginTop:10,backgroundColor:'#fff'}}>
-                    <ListItem2 title="历史路径" showBottomBorder={true}
-                        icon={ <FontAwesome size={12} color={'red'} name="home"/>}/>
-                    <ListItem2 title="我的路径" extra={<FontAwesome size={12} color={'red'} name="home"/>}/>
+                <View style={{marginTop:8,backgroundColor:'#fff'}}>
+                    <ListItem2 title="历史记录" showBottomBorder={true}
+                        icon={ <FontAwesome size={14} color={'#14b4ff'} name="history"/>}/>
+                    <ListItem2 title="我的路径" showBottomBorder={true}
+                               icon={ <FontAwesome size={14} color={'#ffa01e'} name="calendar-check-o"/>}/>
+                    <ListItem2 title="我的课表" showBottomBorder={true}
+                               icon={ <FontAwesome size={14} color={'#14b4ff'} name="life-ring"/>}/>
+                    <ListItem2 title="我的订单" showBottomBorder={true}
+                               icon={ <FontAwesome size={14} color={'#20cc85'} name="gg"/>}/>
+                    <ListItem2 title="优惠券"
+                               icon={ <FontAwesome size={14} color={'#ffa01e'} name="gratipay"/>}/>
                 </View>
 
-                <View style={{marginTop:10,backgroundColor:'#fff'}}>
-                    <ListItem2 title="历史路径" showBottomBorder={true}/>
-                    <ListItem2 title="我的路径" extra="aaa" callback={()=>{
+                <View style={{marginTop:8,backgroundColor:'#fff'}}>
+                    <ListItem2 title="夜间模式" showBottomBorder={true}
+                                icon={<FontAwesome size={14} color="#20cc85" name="moon-o"/>}
+                                extra={<Switch onTintColor="#14b4ff" thumbTintColor="#f2f2f2" tintColor="#d9d9d9"
+                                               value={this.state.onOff} onValueChange={(value)=>{
+                                     this.setState({...this.state,onOff:value})
 
-                    }}/>
-                    <ListItem2 title="设置" callback={()=>{
-                        this.props.navigation.navigate("Setting")
-                    }}/>
+                                }}/>}/>
+                    <ListItem2 title="设置"
+                               icon={ <FontAwesome size={14} color={'#14b4ff'} name="cog"/>}
+                               callback={()=>{
+                                   this.props.navigation.navigate("Setting")}}/>
+
+
                 </View>
             </ScrollView>
         )
     }
 }
+const styles=StyleSheet.create({
+    bgColor:{
+        backgroundColor:"#bbbbbb",
+    }
+})

@@ -26,7 +26,7 @@ export default class Top extends React.Component{
         return(
             <View>
                 {
-                    this.props.isLogin?
+                    global.isLogin?
                         <View style={[styles.topWrap]}>
                             <View>
                                 <View style={styles.InfoWrap}>

@@ -13,7 +13,7 @@ export default class ListItem extends React.Component{
     }
 
     render(){
-        const {icon,title,extra,showBottomBorder,callback} = this.props;
+        const {icon,rightIcon,subName,title,extra,showBottomBorder,callback} = this.props;
 
        /* let rs = null;
         if(extra){
@@ -40,6 +40,14 @@ export default class ListItem extends React.Component{
                 <View style={[styles.contentWrap,showBottomBorder&&styles.contentBorder]}>
                     <Text style={styles.itemText}>{title}</Text>
                     <View style={{flex:1}}></View>
+                    {
+                        subName&&<Text style={{fontSize:12,marginRight:8}}>{subName}</Text>
+                    }
+                    {
+                       /* rightIcon&&<View>
+                            {rightIcon}
+                        </View>*/
+                    }
 
                     {
                         !extra?<FontAwesome name="angle-right" color="#999" size={14}/>:
@@ -72,7 +80,7 @@ const styles = StyleSheet.create({
         borderBottomColor:'#ccc'
     },
     itemText:{
-        fontSize:14,
+        fontSize:12,
     },
     arrowWrap:{
         width:20,

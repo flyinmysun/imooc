@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "result": {
+      "user": {
+          "id": 1,
+          "username": "1",
+          "mobilePhone": "12345678901",
+          "email": "changyang@qq.com",
+          "nickname": "cy饕餮",
+          "createTime": 1495801378000
+      }
+  }
+}
