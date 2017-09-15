@@ -29,7 +29,7 @@ export default class ListItem extends React.Component{
         return(
             <TouchableOpacity style={styles.listItemWrap} onPress={()=>{
                 if(callback)
-                    callback()
+                    callback(subName)
             }}>
                 {
                     icon&&

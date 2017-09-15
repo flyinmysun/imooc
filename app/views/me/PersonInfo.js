@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet,View,Text,Switch,TouchableOpacity,Navigation,Image} from 'react-native'
+import {StyleSheet,View,Text,Switch,TouchableOpacity,Navigation,Image,DeviceEventEmitter} from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Screen from "../../utils/screen"
 import ListItem2 from "./components/ListItem2"
@@ -8,13 +8,7 @@ export default class PersonInfo extends React.Component{
     constructor(props){
         super(props);
         this.state={
-             settingPageData:[
-                 {id:1,name:"cy饕餮",IconName:"user-circle-o",color:"pink"},
-                 {id:2,name:"推送设置",subName:""},
-                 {id:3,name:"清除缓存",subName:"112KB"},
-                 {id:4,name:"给我评分",subName:""},
-                 {id:5,name:"意见反馈",subName:""},
-             ],
+            careerSubName:"请选择",
 
         }
     }
@@ -26,6 +20,22 @@ export default class PersonInfo extends React.Component{
     }
     componentDidMount(){
 
+        alert(this.props.navigation.state.params.subName)
+
+            /*if(this.props.navigation.state.params.subName){
+                const a = this.props.navigation.state.params.subName
+                this.setState({...this.state,careerSubName:a.name})
+            }*/
+
+
+
+
+    }
+    componentDidUpdate(){
+
+    }
+    _careerChoice=(subName)=>{
+        this.props.navigation.navigate("CareerChoice",{choice:subName})
     }
 
     render(){
@@ -39,7 +49,7 @@ export default class PersonInfo extends React.Component{
                     <FontAwesome name="angle-right" color="#999" size={14} style={{marginLeft:10}}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={{marginTop:10,backgroundColor:"#fff"}} >
-                    <ListItem2 title="职业" subName="web前端工程师" showBorderBottom={true} />
+                    <ListItem2 title="职业" subName={this.state.careerSubName} showBorderBottom={true} callback={this._careerChoice}/>
                     <ListItem2 title="签名" subName="执子之手与子偕老"  />
                 </TouchableOpacity>
                 <TouchableOpacity style={{marginTop:10,backgroundColor:"#fff"}} >

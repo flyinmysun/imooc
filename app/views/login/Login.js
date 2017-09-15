@@ -39,7 +39,7 @@ export default class Login extends React.Component{
                         global.isLogin = true;
                         alert(global.isLogin)
                         this.props.navigation.goBack();
-                        DeviceEventEmitter.emit('test');
+                        DeviceEventEmitter.emit('loginSuccess'); //发送时间，告知登录成功
                     }else{
                         alert(data.errorMsg)
                     }

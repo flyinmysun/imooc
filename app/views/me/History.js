@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet,View,Text,Image,TouchableOpacity,Navigation} from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Screen from "../../../utils/screen"
+import Screen from "../../utils/screen"
 import HistoryItem from "./components/HistoryItem"
 
 export default class History extends React.Component{

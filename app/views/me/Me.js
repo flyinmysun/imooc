@@ -46,7 +46,9 @@ export default class Me extends React.Component{
     }
 
     componentDidMount(){
-        DeviceEventEmitter.addListener('test',
+        DeviceEventEmitter.addListener('loginSuccess',//监听登录成功事件
+            () =>{this.setState({...this.state,isLogin:global.isLogin})});
+        DeviceEventEmitter.addListener('outLogin', //监听退出登录事件
             () =>{this.setState({...this.state,isLogin:global.isLogin})});
     }
 
@@ -69,6 +71,9 @@ export default class Me extends React.Component{
     updateOk(name){
         alert(name);
     }
+    _historyCall=()=>{
+        this.props.navigation.navigate("History")
+    }
 
     render(){
 
@@ -87,7 +92,8 @@ export default class Me extends React.Component{
                           }}/>*/}
                 <View style={{marginTop:8,backgroundColor:'#fff'}}>
                     <ListItem2 title="历史记录" showBottomBorder={true}
-                        icon={ <FontAwesome size={14} color={'#14b4ff'} name="history"/>}/>
+                               icon={ <FontAwesome size={14} color={'#14b4ff'} name="history" />}
+                               callback={this._historyCall}/>
                     <ListItem2 title="我的路径" showBottomBorder={true}
                                icon={ <FontAwesome size={14} color={'#ffa01e'} name="calendar-check-o"/>}/>
                     <ListItem2 title="我的课表" showBottomBorder={true}

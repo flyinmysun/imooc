@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet,View,Text,Switch,TouchableOpacity,Navigation,Image} from 'react-native'
+import {StyleSheet,View,Text,Switch,TouchableOpacity,DeviceEventEmitter} from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Screen from "../../utils/screen"
 import ListItem2 from "./components/ListItem2"
@@ -15,6 +15,7 @@ export default class Setting extends React.Component{
                  {id:4,name:"给我评分",subName:""},
                  {id:5,name:"意见反馈",subName:""},
              ],
+
             onOff:false,
             onOff2:true,
         }
@@ -27,6 +28,11 @@ export default class Setting extends React.Component{
     }
     componentDidMount(){
 
+    }
+    _outLogin=()=>{
+        global.isLogin=false;
+        DeviceEventEmitter.emit('outLogin'); //发送时间，告知登录成功
+        this.props.navigation.navigate("me")
     }
 
     render(){
@@ -72,7 +78,8 @@ export default class Setting extends React.Component{
                         global.isLogin = false;
                     }}>
                         <Text style={styles.btnText} onPress={()=>{
-                            this.props.navigation.state.params.updateOk("aaa");
+                            //this.props.navigation.state.params.updateOk("aaa");
+                            this._outLogin()
                         }}>退出登录</Text>
                     </TouchableOpacity>
                 </View>

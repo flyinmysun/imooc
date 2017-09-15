@@ -4,7 +4,7 @@
 import React from 'react'
 import {StyleSheet,Dimensions,View,Text,TouchableOpacity} from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Screen from "../../../../utils/screen"
+import Screen from "../../../utils/screen"
 
 export default class HistoryItem extends React.Component{
     constructor(props){
