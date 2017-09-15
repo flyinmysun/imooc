@@ -8,7 +8,7 @@ export default class CareerChoice extends React.Component{
     constructor(props){
         super(props);
         this.state={
-                choiceName:this.props.navigation.state.params.choice
+                choiceName:this.props.navigation.state.params.choiceName
 
         }
     }
@@ -22,9 +22,10 @@ export default class CareerChoice extends React.Component{
 
     }
     _checked=(item)=>{
+        this.props.navigation.state.params.choice(item);
         this.setState({...this.state,choiceName:item.name})
         //DeviceEventEmitter.emit("choice")
-        this.props.navigation.navigate("PersonInfo",{subName:item.name})
+        this.props.navigation.goBack()
     }
 
     render(){

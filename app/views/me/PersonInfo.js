@@ -19,8 +19,13 @@ export default class PersonInfo extends React.Component{
         headerStyle: { backgroundColor:'#3C3C3C',elevation:0},//顶部栏背景颜色,去掉底边阴影
     }
     componentDidMount(){
+        if(this.props.navigation.state.params){
+            //alert(this.props.navigation.state.params.subName)
+            const a = this.props.navigation.state.params.subName
+            this.setState({...this.state,careerSubName:a})
+        }
 
-        alert(this.props.navigation.state.params.subName)
+
 
             /*if(this.props.navigation.state.params.subName){
                 const a = this.props.navigation.state.params.subName
@@ -35,7 +40,10 @@ export default class PersonInfo extends React.Component{
 
     }
     _careerChoice=(subName)=>{
-        this.props.navigation.navigate("CareerChoice",{choice:subName})
+        this.props.navigation.navigate("CareerChoice",{choice:this.choice,choiceName:this.state.careerSubName})
+    }
+    choice=(item)=>{
+        this.setState({...this.state,careerSubName:item.name})
     }
 
     render(){

@@ -31,7 +31,7 @@ export default class Setting extends React.Component{
     }
     _outLogin=()=>{
         global.isLogin=false;
-        DeviceEventEmitter.emit('outLogin'); //发送时间，告知登录成功
+        DeviceEventEmitter.emit('outLogin'); //发送时间，告知退出登录
         this.props.navigation.navigate("me")
     }
 

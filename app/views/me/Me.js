@@ -46,9 +46,9 @@ export default class Me extends React.Component{
     }
 
     componentDidMount(){
-        DeviceEventEmitter.addListener('loginSuccess',//监听登录成功事件
+        let a = DeviceEventEmitter.addListener('loginSuccess',//监听登录成功事件
             () =>{this.setState({...this.state,isLogin:global.isLogin})});
-        DeviceEventEmitter.addListener('outLogin', //监听退出登录事件
+        let b = DeviceEventEmitter.addListener('outLogin', //监听退出登录事件
             () =>{this.setState({...this.state,isLogin:global.isLogin})});
     }
 
@@ -66,6 +66,10 @@ export default class Me extends React.Component{
         if(this.props.screenProps.inactive == 'me'){
             //alert("inactive me"+global.isLogin);
         }
+    }
+    componentWillUnmount(){
+        this.a.remove();
+        this.b.remove();
     }
 
     updateOk(name){
