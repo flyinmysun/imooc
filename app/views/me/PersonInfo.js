@@ -9,6 +9,7 @@ export default class PersonInfo extends React.Component{
         super(props);
         this.state={
             careerSubName:"请选择",
+            editorName:"请撰写个性签名",
 
         }
     }
@@ -21,30 +22,29 @@ export default class PersonInfo extends React.Component{
     componentDidMount(){
         if(this.props.navigation.state.params){
             //alert(this.props.navigation.state.params.subName)
-            const a = this.props.navigation.state.params.subName
-            this.setState({...this.state,careerSubName:a})
+            const careerVal = this.props.navigation.state.params.subName
+            this.setState({...this.state,careerSubName:careerVal})
+           /* const editorVar = this.props.navigation.state.params.value
+            this.setState({...this.state,editorName:editorVar})*/
+
+
         }
-
-
-
-            /*if(this.props.navigation.state.params.subName){
-                const a = this.props.navigation.state.params.subName
-                this.setState({...this.state,careerSubName:a.name})
-            }*/
-
-
-
-
     }
     componentDidUpdate(){
 
     }
     _careerChoice=(subName)=>{
         this.props.navigation.navigate("CareerChoice",{choice:this.choice,choiceName:this.state.careerSubName})
-    }
+    };
     choice=(item)=>{
         this.setState({...this.state,careerSubName:item.name})
-    }
+    };
+    _EditorName=()=>{
+        this.props.navigation.navigate("EditorName",{editor:this._editor,textVal:this.state.editorName})
+    };
+    _editor=(inputVal)=>{
+        this.setState({...this.state,editorName:inputVal})
+    };
 
     render(){
         return(
@@ -58,7 +58,7 @@ export default class PersonInfo extends React.Component{
                 </TouchableOpacity>
                 <TouchableOpacity style={{marginTop:10,backgroundColor:"#fff"}} >
                     <ListItem2 title="职业" subName={this.state.careerSubName} showBorderBottom={true} callback={this._careerChoice}/>
-                    <ListItem2 title="签名" subName="执子之手与子偕老"  />
+                    <ListItem2 title="签名" subName={this.state.editorName} callback={this._EditorName} />
                 </TouchableOpacity>
                 <TouchableOpacity style={{marginTop:10,backgroundColor:"#fff"}} >
                     <ListItem2 title="昵称" subName="cy饕餮" showBorderBottom={true} />
