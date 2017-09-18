@@ -18,6 +18,7 @@ export default class Setting extends React.Component{
 
             onOff:false,
             onOff2:true,
+            isLogin:global.isLogin,
         }
     }
     static navigationOptions = {
@@ -27,6 +28,8 @@ export default class Setting extends React.Component{
         headerStyle: { backgroundColor:'#3C3C3C',elevation:0},//顶部栏背景颜色,去掉底边阴影
     }
     componentDidMount(){
+        DeviceEventEmitter.addListener('loginSuccess',//监听登录成功事件
+            () =>{this.setState({...this.state,isLogin:global.isLogin})});
 
     }
     _outLogin=()=>{
@@ -38,17 +41,32 @@ export default class Setting extends React.Component{
     render(){
         return(
             <View style={{flex:1}}>
-                <TouchableOpacity
-                    style={{flexDirection:"row",padding:10,backgroundColor:"#fff",alignItems:"center",marginTop:10}}
-                    onPress={()=>{
-                        this.props.navigation.navigate("PersonInfo")
-                    }}
-                >
-                    <FontAwesome name="user-circle-o" color="pink" size={30}/>
-                    <Text style={{marginLeft:10}}>cy饕餮</Text>
-                    <View style={{flex:1}}></View>
-                    <FontAwesome name="angle-right" color="#999" size={14}/>
-                </TouchableOpacity>
+                {
+                    this.state.isLogin?<TouchableOpacity
+                        style={{flexDirection:"row",padding:10,backgroundColor:"#fff",alignItems:"center",marginTop:10}}
+                        onPress={()=>{
+                            this.props.navigation.navigate("PersonInfo")
+                        }}
+                    >
+                        <FontAwesome name="user-circle-o" color="pink" size={30}/>
+                        <Text style={{marginLeft:10}}>cy饕餮</Text>
+                        <View style={{flex:1}}></View>
+                        <FontAwesome name="angle-right" color="#999" size={14}/>
+                    </TouchableOpacity>:
+                    <TouchableOpacity
+                        style={{flexDirection:"row",padding:10,backgroundColor:"#fff",alignItems:"center",marginTop:10}}
+                        onPress={()=>{
+                            this.props.navigation.navigate("Login")
+                        }}
+                    >
+                        <FontAwesome name="user-circle-o" color="pink" size={30}/>
+                        <Text style={{marginLeft:10}}>昵称</Text>
+                        <View style={{flex:1}}></View>
+                        <Text style={{fontSize:10,color:"#878787",marginRight:8}}>点此登录</Text>
+                        <FontAwesome name="angle-right" color="#999" size={14}/>
+                    </TouchableOpacity>
+                }
+
                 <View style={{marginTop:10,backgroundColor:"#fff"}} >
                     <ListItem2 title="推送设置"/>
                 </View>

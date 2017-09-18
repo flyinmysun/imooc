@@ -56,6 +56,13 @@ export default class Login extends React.Component{
             <View style={styles.loginWrap}>
                 <ImageBackground source={require("../../imgs/logoBg.png")}
                                 style={{flex:1}} >
+                    <View style={{marginLeft:10,marginTop:20}}>
+                        <TouchableOpacity style={styles.closeBtn} onPress={()=>{
+                            this.props.navigation.goBack();
+                        }}>
+                            <FontAwesome name="times" color="#fff" size={20}/>
+                        </TouchableOpacity>
+                    </View>
                     <View style={styles.titleWrap}>
                         <Text style={{fontSize:20,color:"#fff",backgroundColor:'transparent'}}>欢迎登录长河</Text>
                     </View>
@@ -106,6 +113,9 @@ const styles=StyleSheet.create({
         flex:1,
         justifyContent:"center",
         alignItems:"center",
+    },
+    closeBtn:{
+        padding:4
     },
     titleWrap:{
         width:Screen.width,

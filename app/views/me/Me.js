@@ -8,7 +8,8 @@ import {
     View,
     ScrollView,
     Switch,
-    DeviceEventEmitter
+    DeviceEventEmitter,
+    TextInput,
 } from 'react-native';
 import Top from "./components/Top"
 import IconMenu from "./components/IconMenu"
@@ -75,8 +76,28 @@ export default class Me extends React.Component{
     updateOk(name){
         alert(name);
     }
+    _isLogin=(global,goPage,loginPage)=>{
+        if(global){
+            this.props.navigation.navigate(goPage)
+        }else {
+            this.props.navigation.navigate(loginPage)
+        }
+
+    }
     _historyCall=()=>{
-        this.props.navigation.navigate("History")
+        if(global.isLogin){
+            this.props.navigation.navigate("History")
+        }else {
+            this.props.navigation.navigate("Login")
+        }
+
+    }
+    _goIconMenuScreen=()=>{
+        if(global.isLogin){
+            this.props.navigation.navigate("MyCategory")
+        }else {
+            this.props.navigation.navigate("Login")
+        }
     }
 
     render(){
@@ -86,14 +107,10 @@ export default class Me extends React.Component{
                 <Top test={this.state.isLogin} itemClick={()=>{this.props.navigation.navigate("Login")}}/>
                 <IconMenu data={this.state.iconMenuDatas}
                         goIconMenuScreen={(item)=>{
-                            this.props.navigation.navigate("MyCategory")
-                        }}/>
-                {/*<ListItem data={this.state.listItemDatas} style={{marginTop:10,backgroundColor:'#fff'}}
-                          subScreen={(item)=>{//不能用if来进行判断?
-                              item.type==1&&this.props.navigation.navigate("History");
-                              item.type==6&&this.props.navigation.navigate("Setting")
+                            //this._goIconMenuScreen(item);
+                            this._goIconMenuScreen()
 
-                          }}/>*/}
+                        }}/>
                 <View style={{marginTop:8,backgroundColor:'#fff'}}>
                     <ListItem2 title="历史记录" showBottomBorder={true}
                                icon={ <FontAwesome size={14} color={'#14b4ff'} name="history" />}
