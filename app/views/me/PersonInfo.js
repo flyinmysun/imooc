@@ -8,9 +8,10 @@ export default class PersonInfo extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            careerSubName:"请选择",
-            editorName:"请撰写个性签名",
-
+            userInfoData:"",
+            //careerSubName:"请选择",
+            editorName:" ",
+            nickName:" ",
         }
     }
     static navigationOptions = {
@@ -26,42 +27,75 @@ export default class PersonInfo extends React.Component{
             this.setState({...this.state,careerSubName:careerVal})
            /* const editorVar = this.props.navigation.state.params.value
             this.setState({...this.state,editorName:editorVar})*/
-
-
         }
+        let param={
+            id:1,
+        }
+        const url="http://115.159.6.189:4000/api/v1/user/get"
+        fetch(url,{
+            method: "POST",
+            mode: "cors",  //允许跨域
+            credentials: "include",//允许传cookies
+            headers: {"content-type" : 'application/json'},
+            body: JSON.stringify(param)
+        }).then((response)=> {
+            if (response.ok) {
+                response.json().then((data)=>{
+                    //alert(JSON.stringify(data));
+                    if(data && data.status==0){
+                        let res = data.result;
+                        this.setState({...this.state,userInfoData:res})
+
+                    }else{
+                        alert(data.errorMsg)
+                    }
+                });
+            } else {
+                alert('请求失败，状态码为', response.status);
+            }
+        });
+
     }
     componentDidUpdate(){
 
     }
     _careerChoice=(subName)=>{
-        this.props.navigation.navigate("CareerChoice",{choice:this.choice,choiceName:this.state.careerSubName})
+        this.props.navigation.navigate("CareerChoice",{choice:this.choice,choiceName:this.state.userInfoData.profession})
     };
     choice=(item)=>{
-        this.setState({...this.state,careerSubName:item.name})
+        //this.setState({...this.state,careerSubName:item.name})
+        this.setState({...this.state,userInfoData:{...this.state.userInfoData,profession:item.name}})
     };
     _EditorName=()=>{
-        this.props.navigation.navigate("EditorName",{editor:this._editor,textVal:this.state.editorName})
+        this.props.navigation.navigate("EditorName",{editor:this._editor,editorName:this.state.userInfoData.signature})
     };
-    _editor=(inputVal)=>{
-        this.setState({...this.state,editorName:inputVal})
+    _editor=(inputVal)=>{//回调方法
+        //this.setState({...this.state,editorName:inputVal})
+        this.setState({...this.state,userInfoData:{...this.state.userInfoData,signature:inputVal}})
     };
+    _NickName=()=>{
+        this.props.navigation.navigate("NickName",{nick:this._nick,nickName:this.state.userInfoData.nick_name})
+    };
+    _nick=(textInputVal)=>{
+        //this.setState({...this.state,nickName:textInputVal})
+        this.setState({...this.state,userInfoData:{...this.state.userInfoData,nick_name:textInputVal}})
+    }
 
     render(){
         return(
             <View style={{flex:1}}>
                 <TouchableOpacity style={{flexDirection:"row",padding:10,backgroundColor:"#fff",alignItems:"center",marginTop:10}}>
-
                     <Text style={{fontSize:12}}>头像</Text>
                     <View style={{flex:1}}></View>
                     <FontAwesome name="user-circle-o" color="pink" size={30} />
                     <FontAwesome name="angle-right" color="#999" size={14} style={{marginLeft:10}}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={{marginTop:10,backgroundColor:"#fff"}} >
-                    <ListItem2 title="职业" subName={this.state.careerSubName} showBorderBottom={true} callback={this._careerChoice}/>
-                    <ListItem2 title="签名" subName={this.state.editorName} callback={this._EditorName} />
+                    <ListItem2 title="职业" subName={this.state.userInfoData.profession} showBorderBottom={true} callback={this._careerChoice}/>
+                    <ListItem2 title="签名" subName={this.state.userInfoData.signature} callback={this._EditorName} />
                 </TouchableOpacity>
                 <TouchableOpacity style={{marginTop:10,backgroundColor:"#fff"}} >
-                    <ListItem2 title="昵称" subName="cy饕餮" showBorderBottom={true} />
+                    <ListItem2 title="昵称" subName={this.state.userInfoData.nick_name} showBorderBottom={true} callback={this._NickName} />
                     <ListItem2 title="性别" subName="女" showBorderBottom={true}  />
                     <ListItem2 title="地区" subName="上海市"  />
                 </TouchableOpacity>

@@ -6,6 +6,7 @@ import {StyleSheet,View,Text,TouchableOpacity,
     ImageBackground,TextInput,DeviceEventEmitter } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Screen from "../../utils/screen"
+import Service from "../../service/Service"
 //import ShowPanel from "./components/ShowPanel";
 
 export default class Login extends React.Component{
@@ -22,7 +23,7 @@ export default class Login extends React.Component{
             mobile:"13517317885",
             password:"123456"
         }
-        const url="http://115.159.6.189:4000/api/v1/user/login"
+        /*const url="http://115.159.6.189:4000/api/v1/user/login"
         fetch(url,{
             method: "POST",
             mode: "cors",  //允许跨域
@@ -37,7 +38,7 @@ export default class Login extends React.Component{
                         let res = data.result;
                         global.userInfo = res;
                         global.isLogin = true;
-                        alert(global.isLogin)
+                        //alert(global.isLogin)
                         this.props.navigation.goBack();
                         DeviceEventEmitter.emit('loginSuccess'); //发送时间，告知登录成功
                     }else{
@@ -47,7 +48,18 @@ export default class Login extends React.Component{
             } else {
                 alert('请求失败，状态码为', response.status);
             }
-        });
+        });*/
+
+
+        Service.login(param,this._loginSuccessFn)
+
+    }
+    _loginSuccessFn=(res)=>{
+        global.userInfo = res;
+        global.isLogin = true;
+        //alert(global.isLogin)
+        this.props.navigation.goBack();
+        DeviceEventEmitter.emit('loginSuccess'); //发送时间，
     }
 
 

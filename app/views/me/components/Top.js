@@ -35,7 +35,7 @@ export default class Top extends React.Component{
                                     </View>
                                     <View style={styles.personInfoWrap}>
                                         <View>
-                                            <Text style={styles.name}>cy饕餮</Text>
+                                            <Text style={styles.name}>{this.props.name}</Text>
                                         </View>
                                         <View style={styles.learnWrap}>
                                             <Text style={styles.learnText}>学习时长</Text>

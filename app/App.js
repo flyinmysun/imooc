@@ -27,7 +27,8 @@ import MyCategory from  "./views/me/iconMenuScreen/MyCategory"
 import CategoryDetail from "./views/category/CategoryDetail";
 import PersonInfo from "./views/me/PersonInfo";
 import CareerChoice from "./views/me/subScreen/CareerChoice";
-import EditorName from  "./views/me/subScreen/EditorName"
+import EditorName from  "./views/me/subScreen/EditorName";
+import NickName from "./views/me/subScreen/NickName"
 
 export default class App extends React.Component{
 
@@ -184,7 +185,11 @@ const Navs = StackNavigator({
     },
     EditorName:{
         screen:EditorName,
+    },
+    NickName:{
+        screen:NickName,
     }
+
 
 
 }, {

@@ -8,7 +8,9 @@ export default class EditorName extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            textInfo:this.props.navigation.state.params.textVal,
+            //textInfo:this.props.navigation.state.params.textVal,
+            textInfo:this.props.navigation.state.params.editorName,
+            num:200,
 
         }
     }
@@ -33,7 +35,6 @@ export default class EditorName extends React.Component{
    }
 
     render(){
-
         return(
             <View style={styles.container}>
                 <TextInput placeholder="说点什么吧..."
@@ -45,17 +46,17 @@ export default class EditorName extends React.Component{
                            maxLength={200}
                            keyboardType="default"
                            onChangeText={(textInfo)=>{
-                               this.setState({...this.state,textInfo:textInfo})
+                               this.setState({...this.state,textInfo:textInfo,num:200-this.state.textInfo.length})
+                               //this.setState({...this.state,textInfo:textInfo})
+                               //this.setState({...this.state,num:this.state.num-length})
+
                            }}
                 />
 
                 <View style={styles.maxLength}>
-                    <Text style={{fontSize:10,marginRight:10}}>已经输入
-                        {this.state.textInfo.length}个字</Text>
+                    <Text style={{fontSize:10,marginRight:10}}>还可以输入
+                        {this.state.num}个字</Text>
                 </View>
-
-                <TextInput/>
-
             </View>
         )
     }

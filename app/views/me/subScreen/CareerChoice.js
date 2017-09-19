@@ -20,11 +20,41 @@ export default class CareerChoice extends React.Component{
     }
     componentDidMount(){
 
+
     }
     _checked=(item)=>{
-        this.props.navigation.state.params.choice(item);
-        this.setState({...this.state,choiceName:item.name})
+
         //DeviceEventEmitter.emit("choice")
+        let param={
+            id:1,
+            profession_id:item.id,
+            profession:item.name,
+        }
+        const url="http://115.159.6.189:4000/api/v1/user/modify"
+        fetch(url,{
+            method: "POST",
+            mode: "cors",  //允许跨域
+            credentials: "include",//允许传cookies
+            headers: {"content-type" : 'application/json'},
+            body: JSON.stringify(param)
+        }).then((response)=> {
+            if (response.ok) {
+                response.json().then((data)=>{
+                    //alert(JSON.stringify(data));
+                    if(data && data.status==0){
+                        //alert(item.name)
+                        //let res = data.result;
+                        this.props.navigation.state.params.choice(item);
+                        this.setState({...this.state,choiceName:item.name})
+
+                    }else{
+                        alert(data.errorMsg)
+                    }
+                });
+            } else {
+                alert('请求失败，状态码为', response.status);
+            }
+        });
         this.props.navigation.goBack()
     }
 
@@ -77,8 +107,9 @@ const   data={
     careerData:[
         {id:1,name:"学生",},
         {id:2,name:"页面重构设计",},
-        {id:3,name:"web前端工程师",},
-        {id:4,name:"JS工程师",},
-        {id:5,name:"交互设计师",},
+        {id:3,name:"少奶奶",},
+        {id:4,name:"web前端工程师",},
+        {id:5,name:"JS工程师",},
+        {id:6,name:"交互设计师",},
     ],
 }

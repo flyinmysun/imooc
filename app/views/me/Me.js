@@ -38,6 +38,7 @@ export default class Me extends React.Component{
             ],
             isLogin:false,
             onOff:false,
+            userInfoData:"",
         }
     }
 
@@ -51,6 +52,36 @@ export default class Me extends React.Component{
             () =>{this.setState({...this.state,isLogin:global.isLogin})});
         let b = DeviceEventEmitter.addListener('outLogin', //监听退出登录事件
             () =>{this.setState({...this.state,isLogin:global.isLogin})});
+
+        let param={
+            id:1,
+        }
+        const url="http://115.159.6.189:4000/api/v1/user/get"
+        fetch(url,{
+            method: "POST",
+            mode: "cors",  //允许跨域
+            credentials: "include",//允许传cookies
+            headers: {"content-type" : 'application/json'},
+            body: JSON.stringify(param)
+        }).then((response)=> {
+            if (response.ok) {
+                response.json().then((data)=>{
+                    //alert(JSON.stringify(data));
+                    if(data && data.status==0){
+                        let res = data.result;
+                        this.setState({...this.state,userInfoData:res})
+
+                    }else{
+                        alert(data.errorMsg)
+                    }
+                });
+            } else {
+                alert('请求失败，状态码为', response.status);
+            }
+        });
+
+
+
     }
 
     componentWillReceiveProps(nextProps){
@@ -104,7 +135,10 @@ export default class Me extends React.Component{
 
         return(
             <ScrollView >
-                <Top test={this.state.isLogin} itemClick={()=>{this.props.navigation.navigate("Login")}}/>
+                <Top test={this.state.isLogin}
+                     itemClick={()=>{this.props.navigation.navigate("Login")}}
+                     name={this.state.userInfoData.name}
+                />
                 <IconMenu data={this.state.iconMenuDatas}
                         goIconMenuScreen={(item)=>{
                             //this._goIconMenuScreen(item);

@@ -64,6 +64,8 @@ const styles = StyleSheet.create({
     listItemWrap:{
         width:Screen.width,
         flexDirection:"row",
+        justifyContent:"center",
+        alignItems:"center",
     },
     iconWrap:{
         width:30,
@@ -72,8 +74,11 @@ const styles = StyleSheet.create({
     },
     contentWrap:{
         flex:1,
-        padding:10,
+        paddingHorizontal:10,
+        paddingVertical:16,
         flexDirection:'row',
+        justifyContent:"center",
+        alignItems:"center"
     },
     contentBorder:{
         borderBottomWidth:Screen.onePixel,
