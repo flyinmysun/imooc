@@ -3,6 +3,7 @@ import {StyleSheet,View,Text,Switch,TouchableOpacity,DeviceEventEmitter} from 'r
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Screen from "../../utils/screen"
 import ListItem2 from "./components/ListItem2"
+import Service from "../../service/Service"
 
 export default class Setting extends React.Component{
     constructor(props){
@@ -19,6 +20,7 @@ export default class Setting extends React.Component{
             onOff:false,
             onOff2:true,
             isLogin:global.isLogin,
+            pageData:""
         }
     }
     static navigationOptions = {
@@ -30,7 +32,13 @@ export default class Setting extends React.Component{
     componentDidMount(){
         DeviceEventEmitter.addListener('loginSuccess',//监听登录成功事件
             () =>{this.setState({...this.state,isLogin:global.isLogin})});
-
+        let param ={
+            id:1
+        }
+        Service.getUserInfo(param,this._getUserInfoSuccess);
+    }
+    _getUserInfoSuccess=(res)=>{
+        this.setState({...this.state,pageData:res})
     }
     _outLogin=()=>{
         global.isLogin=false;
@@ -49,7 +57,7 @@ export default class Setting extends React.Component{
                         }}
                     >
                         <FontAwesome name="user-circle-o" color="pink" size={30}/>
-                        <Text style={{marginLeft:10}}>cy饕餮</Text>
+                        <Text style={{marginLeft:10}}>{this.state.pageData.nick_name}</Text>
                         <View style={{flex:1}}></View>
                         <FontAwesome name="angle-right" color="#999" size={14}/>
                     </TouchableOpacity>:

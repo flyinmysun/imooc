@@ -1,8 +1,9 @@
 import React from 'react'
-import {StyleSheet,View,Text,Switch,TouchableOpacity,Navigation,Image,DeviceEventEmitter} from 'react-native'
+import {StyleSheet,View,Text,Picker,TouchableOpacity,Navigation,Image,DeviceEventEmitter} from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Screen from "../../utils/screen"
 import ListItem2 from "./components/ListItem2"
+import Service from "../../service/Service";
 
 export default class PersonInfo extends React.Component{
     constructor(props){
@@ -12,6 +13,7 @@ export default class PersonInfo extends React.Component{
             //careerSubName:"请选择",
             editorName:" ",
             nickName:" ",
+            //gender:"",
         }
     }
     static navigationOptions = {
@@ -31,34 +33,16 @@ export default class PersonInfo extends React.Component{
         let param={
             id:1,
         }
-        const url="http://115.159.6.189:4000/api/v1/user/get"
-        fetch(url,{
-            method: "POST",
-            mode: "cors",  //允许跨域
-            credentials: "include",//允许传cookies
-            headers: {"content-type" : 'application/json'},
-            body: JSON.stringify(param)
-        }).then((response)=> {
-            if (response.ok) {
-                response.json().then((data)=>{
-                    //alert(JSON.stringify(data));
-                    if(data && data.status==0){
-                        let res = data.result;
-                        this.setState({...this.state,userInfoData:res})
+       Service.getUserInfo(param,this._getUserInfo)
 
-                    }else{
-                        alert(data.errorMsg)
-                    }
-                });
-            } else {
-                alert('请求失败，状态码为', response.status);
-            }
-        });
-
+    }
+    _getUserInfo=(res)=>{
+        this.setState({...this.state,userInfoData:res})
     }
     componentDidUpdate(){
 
     }
+    /**职业选择***/
     _careerChoice=(subName)=>{
         this.props.navigation.navigate("CareerChoice",{choice:this.choice,choiceName:this.state.userInfoData.profession})
     };
@@ -66,6 +50,7 @@ export default class PersonInfo extends React.Component{
         //this.setState({...this.state,careerSubName:item.name})
         this.setState({...this.state,userInfoData:{...this.state.userInfoData,profession:item.name}})
     };
+    /***签名**/
     _EditorName=()=>{
         this.props.navigation.navigate("EditorName",{editor:this._editor,editorName:this.state.userInfoData.signature})
     };
@@ -73,12 +58,18 @@ export default class PersonInfo extends React.Component{
         //this.setState({...this.state,editorName:inputVal})
         this.setState({...this.state,userInfoData:{...this.state.userInfoData,signature:inputVal}})
     };
+    /**修改昵称***/
     _NickName=()=>{
         this.props.navigation.navigate("NickName",{nick:this._nick,nickName:this.state.userInfoData.nick_name})
     };
     _nick=(textInputVal)=>{
         //this.setState({...this.state,nickName:textInputVal})
         this.setState({...this.state,userInfoData:{...this.state.userInfoData,nick_name:textInputVal}})
+    };
+    /**选择性别***/
+    _chooseSex=()=>{
+        //alert(1)
+
     }
 
     render(){
@@ -96,7 +87,15 @@ export default class PersonInfo extends React.Component{
                 </TouchableOpacity>
                 <TouchableOpacity style={{marginTop:10,backgroundColor:"#fff"}} >
                     <ListItem2 title="昵称" subName={this.state.userInfoData.nick_name} showBorderBottom={true} callback={this._NickName} />
-                    <ListItem2 title="性别" subName="女" showBorderBottom={true}  />
+                    <ListItem2 title="性别"
+                               subName="女"
+                               showBorderBottom={true}  callback={this._chooseSex} />
+                    <Picker
+                        selectedValue={this.state.language}
+                        onValueChange={(lang) => this.setState({language: lang})}>
+                        <Picker.Item label="Java" value="java" />
+                        <Picker.Item label="JavaScript" value="js" />
+                    </Picker>
                     <ListItem2 title="地区" subName="上海市"  />
                 </TouchableOpacity>
                 <TouchableOpacity style={{marginTop:10,backgroundColor:"#fff"}} >
@@ -105,6 +104,7 @@ export default class PersonInfo extends React.Component{
                     <ListItem2 title="实名认证" subName="未认证" showBorderBottom={true} />
                     <ListItem2 title="学籍认证" subName="未认证"  />
                 </TouchableOpacity>
+
 
 
             </View>

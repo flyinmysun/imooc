@@ -2,6 +2,7 @@ import React from 'react'
 import {StyleSheet,View,Text,TextInput,TouchableOpacity,Navigation,} from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Screen from "../../../utils/screen"
+import Service from "../../../service/Service"
 
 let _this = null;
 export default class EditorName extends React.Component{
@@ -28,11 +29,20 @@ export default class EditorName extends React.Component{
     }
 
    _sure=()=>{
-        let value= this.state.textInfo
+       let value= this.state.textInfo
+       let param={
+           id:1,
+           signature:value,
+       }
+       Service.modifyUserInfo(param,this._modifyUserInfo("",value))
+
        //alert(value)
-       this.props.navigation.state.params.editor(value);
+
        this.props.navigation.goBack()
    }
+    _modifyUserInfo=(res,value)=>{
+        this.props.navigation.state.params.editor(value);
+    }
 
     render(){
         return(

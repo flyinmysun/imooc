@@ -14,6 +14,7 @@ import {
 import Top from "./components/Top"
 import IconMenu from "./components/IconMenu"
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Service from "../../service/Service"
 
 import ListItem from "./components/ListItem"
 import ListItem2 from "./components/ListItem2"
@@ -56,32 +57,10 @@ export default class Me extends React.Component{
         let param={
             id:1,
         }
-        const url="http://115.159.6.189:4000/api/v1/user/get"
-        fetch(url,{
-            method: "POST",
-            mode: "cors",  //允许跨域
-            credentials: "include",//允许传cookies
-            headers: {"content-type" : 'application/json'},
-            body: JSON.stringify(param)
-        }).then((response)=> {
-            if (response.ok) {
-                response.json().then((data)=>{
-                    //alert(JSON.stringify(data));
-                    if(data && data.status==0){
-                        let res = data.result;
-                        this.setState({...this.state,userInfoData:res})
-
-                    }else{
-                        alert(data.errorMsg)
-                    }
-                });
-            } else {
-                alert('请求失败，状态码为', response.status);
-            }
-        });
-
-
-
+        Service.getUserInfo(param,this._getUserInfo)
+    }
+    _getUserInfo=(res)=>{
+        this.setState({...this.state,userInfoData:res})
     }
 
     componentWillReceiveProps(nextProps){

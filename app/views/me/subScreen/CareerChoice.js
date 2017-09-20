@@ -2,6 +2,7 @@ import React from 'react'
 import {StyleSheet,View,Text,ScrollView,TouchableOpacity,Navigation,DeviceEventEmitter} from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Screen from "../../../utils/screen"
+import Service from "../../../service/Service";
 
 
 export default class CareerChoice extends React.Component{
@@ -30,8 +31,8 @@ export default class CareerChoice extends React.Component{
             profession_id:item.id,
             profession:item.name,
         }
-        const url="http://115.159.6.189:4000/api/v1/user/modify"
-        fetch(url,{
+        Service.modifyUserInfo(param,this._modifyUserInfo("",item))
+        /*fetch(url,{
             method: "POST",
             mode: "cors",  //允许跨域
             credentials: "include",//允许传cookies
@@ -44,8 +45,7 @@ export default class CareerChoice extends React.Component{
                     if(data && data.status==0){
                         //alert(item.name)
                         //let res = data.result;
-                        this.props.navigation.state.params.choice(item);
-                        this.setState({...this.state,choiceName:item.name})
+
 
                     }else{
                         alert(data.errorMsg)
@@ -54,8 +54,12 @@ export default class CareerChoice extends React.Component{
             } else {
                 alert('请求失败，状态码为', response.status);
             }
-        });
+        });*/
         this.props.navigation.goBack()
+    }
+    _modifyUserInfo=(res,item)=>{
+        this.props.navigation.state.params.choice(item);
+        this.setState({...this.state,choiceName:item.name})
     }
 
     render(){
