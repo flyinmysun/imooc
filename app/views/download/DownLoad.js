@@ -73,7 +73,7 @@ export default class Discover extends React.Component {
                   this.state.isModal&&
                   <TouchableOpacity style={{position:'absolute',width:scree.width,height:scree.height,backgroundColor:'rgba(0,0,0,0.8)',}}
                     onPress={()=>{
-                        this.onRequestClose()
+                        this.onRequestClose( )
                     }}>
                       <View style={{flexDirection:'row',justifyContent:'flex-end'}}>
                           <View style={{width:100,marginRight:10,marginTop:10,
