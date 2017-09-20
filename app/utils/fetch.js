@@ -14,7 +14,8 @@ class fetchFun{
                     .then((data)=>{
                         if(data &&data.status==0){
                             let res = data.result;
-                            successCallBack(res)
+                            if(successCallBack)
+                                successCallBack(res)
                         }else{
                             console.log(data.errorMsg)
                         }

@@ -30,6 +30,8 @@ import CareerChoice from "./views/me/subScreen/CareerChoice";
 import EditorName from  "./views/me/subScreen/EditorName";
 import NickName from "./views/me/subScreen/NickName"
 
+//global.baseUrl = ''
+
 export default class App extends React.Component{
 
     constructor(props){

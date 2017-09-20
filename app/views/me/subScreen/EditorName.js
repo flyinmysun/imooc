@@ -41,7 +41,8 @@ export default class EditorName extends React.Component{
        this.props.navigation.goBack()
    }
     _modifyUserInfo=(res,value)=>{
-        this.props.navigation.state.params.editor(value);
+        if(this.props.navigation.state.params.editor)
+            this.props.navigation.state.params.editor(value);
     }
 
     render(){

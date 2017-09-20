@@ -81,10 +81,10 @@ export default class PersonInfo extends React.Component{
                     <FontAwesome name="user-circle-o" color="pink" size={30} />
                     <FontAwesome name="angle-right" color="#999" size={14} style={{marginLeft:10}}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginTop:10,backgroundColor:"#fff"}} >
+                <View style={{marginTop:10,backgroundColor:"#fff"}} >
                     <ListItem2 title="职业" subName={this.state.userInfoData.profession} showBorderBottom={true} callback={this._careerChoice}/>
                     <ListItem2 title="签名" subName={this.state.userInfoData.signature} callback={this._EditorName} />
-                </TouchableOpacity>
+                </View>
                 <TouchableOpacity style={{marginTop:10,backgroundColor:"#fff"}} >
                     <ListItem2 title="昵称" subName={this.state.userInfoData.nick_name} showBorderBottom={true} callback={this._NickName} />
                     <ListItem2 title="性别"
