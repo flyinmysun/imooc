@@ -3,6 +3,7 @@ import {StyleSheet,View,Text,ScrollView,TouchableOpacity,Navigation,DeviceEventE
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Screen from "../../../utils/screen"
 import Service from "../../../service/Service";
+import {toastShort} from "../../../utils/toast"
 
 
 export default class CareerChoice extends React.Component{
@@ -55,6 +56,7 @@ export default class CareerChoice extends React.Component{
                 alert('请求失败，状态码为', response.status);
             }
         });*/
+        toastShort("修改成功")
         this.props.navigation.goBack()
     }
     _modifyUserInfo=(res,item)=>{

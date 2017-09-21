@@ -3,6 +3,7 @@ import {StyleSheet,View,Text,TextInput,TouchableOpacity,Navigation,} from 'react
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Screen from "../../../utils/screen"
 import Service from "../../../service/Service"
+import {toastShort} from "../../../utils/toast"
 
 let _this = null;
 export default class EditorName extends React.Component{
@@ -37,7 +38,7 @@ export default class EditorName extends React.Component{
        Service.modifyUserInfo(param,this._modifyUserInfo("",value))
 
        //alert(value)
-
+       toastShort("修改成功")
        this.props.navigation.goBack()
    }
     _modifyUserInfo=(res,value)=>{

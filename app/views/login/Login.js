@@ -8,6 +8,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Screen from "../../utils/screen"
 import Service from "../../service/Service"
 //import ShowPanel from "./components/ShowPanel";
+import {toastShort} from "../../utils/toast"
 
 export default class Login extends React.Component{
     constructor(props) {
@@ -53,13 +54,16 @@ export default class Login extends React.Component{
 
         Service.login(param,this._loginSuccessFn)
 
+
     }
     _loginSuccessFn=(res)=>{
         global.userInfo = res;
         global.isLogin = true;
         //alert(global.isLogin)
+        toastShort("登录成功")
         this.props.navigation.goBack();
-        DeviceEventEmitter.emit('loginSuccess'); //发送时间，
+
+        DeviceEventEmitter.emit('loginSuccess'); //发送事件，
     }
 
 
